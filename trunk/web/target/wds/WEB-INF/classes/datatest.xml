@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<root>
+    <survey>
+        <link></link>
+        <title>survey title</title>
+        <description>survey description</description>
+        <welcometext>webcometext</welcometext>
+        <endtext>endext</endtext>
+        <supervisor>supervisor</supervisor>
+        <email>wuxuehu@qq.com</email>
+        <active>yes</active>
+        <expires>9/17/12</expires>
+        <language>1</language>
+        <saved>2</saved>
+        <isdescription>1</isdescription>
+    </survey>
+    
+    <question>
+        <freetext>
+            <title>test1</title><!--button value:1/yes 2/no-->
+            <mask>09172012</mask>
+            <description>1</description><!--1/yes 3/no-->
+            <answertype>1</answertype><!--1/input 3/TextArea 5/TextArea(Rich)-->
+            <maskType>2</maskType><!--key type:2/date 3/phone-->
+        </freetext>
+        <rating>
+            <title button="1">test2</title><!--button value:1/yes 2/no-->
+            <description>1</description><!--1/yes 3/no-->
+            <rating>2</rating><!--stars number: 1-9-->
+        </rating>
+        <choice>
+            <title button="1">test3</title><!--button value:1/yes 2/no-->
+            <mask>09172012</mask>
+            <answernum>2</answernum><!--stars number: 2-10 -->
+            <description>1</description><!--1/yes 2/no-->
+            <multiple>1</multiple><!--1/yes 2/no-->
+            <customized>1</customized><!--1/yes 2/no-->
+        </choice>
+        <matrix>
+            <title button="1">test4</title><!--button value:1/yes 2/no-->
+            <columntype>1</columntype><!--1/input 2/rating 3/choice-->
+            <description>1</description><!--1/yes 2/no-->
+            <multiple>1</multiple><!--1/yes 2/no-->
+            <customized>1</customized><!--1/yes 2/no-->
+            <questionnum display="">5</questionnum><!--question number:for 1 to 9-->
+            <choicenum display=""></choicenum><!--1/yes 2/no-->
+        </matrix>
+    </question>
+</root>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: au.com.satech.wds.service.test.PageManagerTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.371 sec

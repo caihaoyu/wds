@@ -1,0 +1,354 @@
+@charset "utf-8";
+/* Universal button panel style */
+.buttonbg1{
+    display:inline-block;
+    background:url(images/minibutton_matrix.png) 0 0 no-repeat;
+    height:23px;
+    padding:0 0 0 3px;
+    white-space:nowrap;
+    border:none;
+    overflow:visible;
+    cursor:pointer;
+    text-decoration:none;
+}
+.buttonbg1:hover{
+    color:#FFF;
+    font-weight:bold;
+    background-position:0 -30px;
+}
+.buttonbg2{
+    height:23px;
+    padding:0 10px 0 8px;
+    line-height:23px;
+    background:url(images/minibutton_matrix.png) 100% 0 no-repeat;
+}
+.buttonbg2 a {
+    margin-left: 3px;
+    color:#333;
+    font-weight:bold;
+    font-size:11px;
+    font-family:Verdana, Geneva, sans-serif;
+}
+.buttonbg2 a:hover {
+    color:#FFF;
+    font-weight:bold;
+}
+
+.buttonbg2:hover{
+    background-position:100% -30px;
+}
+.button-icon-img {
+    vertical-align:middle;
+    margin-top:-3px;
+}
+/* Universal button panel style */
+
+
+img {
+    border: none;
+}
+.clearfloat {
+    clear: both;
+}
+.login-panel {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.connection {
+    margin-left: auto;
+    margin-right: auto;
+}
+.table-align-top {
+    vertical-align: top;
+}
+.admin-layout-panel {
+    width: 100%;
+}
+.admin-layout-panelWest {
+    width: 20%;
+}
+.admin-layout-panelCenter {
+    width: 80%;
+}
+.admin-links {
+    font-size: 14px;
+}
+
+.admin-links:hover{
+    color: #cc0033;
+}
+
+.admin-title-text {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size:  28px;
+}
+
+.admin-title-frame {
+    padding-top: 15px;
+}
+.admin-layout-panelcenter {
+    vertical-align: top;
+}
+.admin-layout-panelwest {
+    vertical-align: top;
+}
+.admin-layout-panelNorth {
+
+}
+
+/* Admin navi menu */
+.surveyManagementGroup,.questionManagementGroup,.logoutGroup {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.navigationMenuGrid-row1 {
+    background-color:gainsboro;
+}
+.navigationMenuGrid-row2 {
+    background-color: white;
+}
+
+.add-new-survey-title {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size:  20px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.edit-survey-title, .edit-question-title {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size:  20px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.add-new-question-title {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size:  20px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.edit-question-title-panel {
+    float: left;
+    margin: 3px;
+}
+.operations-prompt-panel {
+    margin: 3px;
+    float: left;
+}
+.operation-buttons {
+    margin: 3px;
+    float: left;
+    height: 20px;
+}
+.question-buttons {
+    margin-top: 10px;
+}
+.question-body-panel{
+    width: 620px;
+    padding: 5px;
+}
+.updatedPrompt {
+    
+}
+.popupContent {
+    width: 100%;
+    text-align: center;
+}
+.popupButtons {
+    width: 100%;
+    text-align: center;
+}
+.updated-panel {
+    float: left;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+.table {
+    width: 100%;
+}
+
+/* add new question page */
+
+.left-side {
+    width: 700px;
+    float: left;
+}
+.right-side {
+    width: 200px;
+    float: left
+}
+.add-new-question-title-frame {
+    margin-bottom: 15px;
+}
+.question-body-label {
+    float: left;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.question-preview-label {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.question-body-panel {
+    margin-bottom: 15px;
+}
+.answer-label {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.answer-buttons {
+    margin-top: 5px;
+}
+.move-answer-button {
+    margin-left: 3px;
+}
+.confirm-buttons {
+    text-align: center;
+}
+.answers-panel {
+    margin-top: 5px;
+}
+.add-new-answer-button-panel,.add-new-column-choice-button-panel {
+    margin-top: 5px;
+}
+.matrix-answers-panel {
+    float: left;
+    clear: both;
+    padding: 5px;
+}
+.generate-preview {
+    float: left;
+    margin-left: 10px;
+    margin-top: 4px;
+}
+.sub-questions-group {
+    float: left;
+    width: 300px;
+    padding: 5px;
+}
+.column-choices {
+    float: left;
+    width: 300px;
+    padding: 5px;
+}
+.sub-questions-label {
+    
+}
+.add-sub-question-button,.add-column-button {
+    margin-top: 12px;
+}
+.notes {
+    float: left;
+    font-weight: normal;
+    font-style: italic;
+}
+/* Matrix Preview */
+.preview-question-body {
+    clear: both;
+    float: left;
+    margin: 15px;
+}
+.matrix-table {
+    float: left;
+    clear: both;
+    margin: 15px;
+}
+.empty-space {
+    
+}
+.matrix-tableRow1 {
+    background-color:#99ccff;
+    text-align: center;
+}
+.matrix-tableRow2 {
+    text-align: center;
+}
+.sub-questions {
+    
+}
+.selection-img {
+    margin-left: auto;
+    margin-right: auto;
+}
+.question-paginator-info-panel {
+    margin: 5px;
+}
+.paginator-info-text, .question-paginator-info-panel {
+    font-size: 12px;
+}
+/* The following classes are in the java code */
+.sub-question-input,.sub-column-choices {
+    width: 240px;
+}
+.answer-panel {
+    
+}
+.optionInput {
+    width: 22px;
+    text-align: center;
+}
+.dot {
+
+}
+.optionContent {
+    width:320px;
+}
+.answer-option {
+    width: 580px;
+}
+.answer-panel {
+    margin-top: 5px;
+}
+/* The above classes are in the java code */
+.options-panel {
+    width: 200px;
+    padding: 5px;
+    border-style: solid;
+    border-color: darkgray;
+}
+.option-label {
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+}
+.allowDescription-label,
+.allowMultipile-label,
+.allowCustomized-label {
+    font-size: 12px;
+    display: inline-block;
+}
+.allowDescription, .allowMultipile, .allowCustomized {
+    font-size: 12px;
+}
+.confirm-buttons {
+    margin-top: 25px;
+}
+
+.freeTextQuestionPropertyTable,
+.multipleChoiceQuestionPropertyTable,
+.matrixQuestionPropertyTable {
+    float: left;
+    text-align: left;
+}
+.freeTextQuestionProperty-questionTitle-textarea,
+.multipleChoiceQuestionProperty-questionTitle-textarea,
+.marixQuestionProperty-questionTitle-textarea {
+    width: 230px;
+}
+
+.multipleChoiceAnswersTable {
+    
+}
+.menuBarContainer{
+    width:500px;
+}
+.exampleBox {
+    margin: 15px 15px 0 0;
+    padding: 15px;
+    background: #FFF;
+    border: 1px solid #d9d9d9;
+    display: block;
+    float:left;
+}

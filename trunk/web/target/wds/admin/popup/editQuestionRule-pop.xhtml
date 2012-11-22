@@ -1,0 +1,30 @@
+<div
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+    <p:outputPanel styleClass="popups" id="popups">
+        <p:dialog id="confirmDeleteQuestionRule"
+              header="Please Confirm:"
+              resizable="false" 
+              dynamic="true" 
+              modal="true" 
+              draggable="false" 
+              widgetVar="confirmDeleteQuestionRule">
+            <div class="popups-content">Delete Question Rule(ID:#{editSurveySession.selectedQuestionruleId})?</div>
+            <div class="popups-buttons">
+                <p:commandLink id="confirmDeleteQRuleBtn" styleClass="commandlinkslim" actionListener="#{editQuestionRuleView.confirmDeleteQuestionRule}" update=":form:ruleGrid,:form:growl">
+                    <span class="ui-icon ui-icon-yes"></span>
+                    <span class="label">Yes</span>
+                </p:commandLink>
+                <p:commandLink id="notDeleteQRuleBtn" styleClass="commandlinkslim" onclick="confirmDeleteQuestionRule.hide()">
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Back</span>
+                </p:commandLink>
+            </div>
+        </p:dialog>
+    </p:outputPanel>
+</div>

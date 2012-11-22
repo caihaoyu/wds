@@ -1,0 +1,90 @@
+<div
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+    <p:outputPanel styleClass="popups" id="popups">
+        <p:dialog id="warnDialog" header="Error: " resizable="false" dynamic="true" modal="true" draggable="false" widgetVar="warndl">  
+            <div class="popups-content">
+                <h:outputText value="#{pagingView.warnPopContent}" />
+            </div>
+            <div class="popups-buttons" >
+                <p:commandLink id="warnBackBtn" styleClass="commandlinkslim" onclick="warndl.hide()">
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Back</span>
+                </p:commandLink>
+            </div>   
+        </p:dialog>        
+        <p:dialog styleClass="editPageDialog" id="editPageDialog" header="Edit Page Propertise: " resizable="false" dynamic="true" modal="true" draggable="false" 
+                  widgetVar="editPageDialog">
+            <div class="content">
+                <table>
+                    <tr>
+                        <td class="title">Page Title: </td>
+                        <td class="inputText"><p:inputText id="pageTitle" /></td>
+                    </tr>
+                    <tr>
+                        <td class="title">Page Header: </td>
+                        <td class="inputText"><p:inputText id="pageHeader" /></td>
+                    </tr>
+                    <tr>
+                        <td class="title">Page Footer: </td>
+                        <td class="inputText"><p:inputText id="pageFooter" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="popups-buttons" >
+                <p:commandLink id="confirmEditPageBtn" styleClass="commandlinkslim" actionListener="#{pagingView.confirmEditPage}" update="pagePanel">
+                    <span class="ui-icon ui-icon-save"></span>
+                    <span class="label">Save</span>
+                </p:commandLink>
+                <p:commandLink id="notEditPageBtn" styleClass="commandlinkslim" onclick="editPageDialog.hide()">
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Back</span>
+                </p:commandLink>
+            </div>
+        </p:dialog>
+        
+        <p:dialog id="addQuestionToPageDialog" header="Add Question to Page: " resizable="false" dynamic="true" modal="true" draggable="false"
+                  widgetVar="addQuestionToPageDialog">
+            <p:ajax event="close" update="addQuestionToPageDialog" listener="#{pagingView.aqtpDialogClose}" />
+            <div class="popups-content">
+                <div class="add-question-content">
+                    <span>Add question to: </span>
+                    <div class="qbody">
+                        <p:selectOneMenu id="pageIdSelect" value="#{editSurveySession.selectedPageId}">
+                            <p:ajax update="aqtpBranchPanel" listener="#{pagingView.aqtpSelectValueChange}" />
+                            <f:selectItem itemLabel="--- select page ---" itemDisabled="true" />
+                            <f:selectItems value="#{editSurveySession.pages}" var="page" 
+                                        itemLabel="#{page.pagetitle}" itemValue="#{page.pageid}" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+                <p:outputPanel id="aqtpBranchPanel">
+                    <p:outputPanel rendered="#{pagingView.renderAqtpBranches}">
+                        <div class="add-question-content">
+                        <p:selectOneMenu id="aqtpBranchSelect" value="#{editSurveySession.selectedPageBranchId}">
+                            <p:ajax update="aqtpButtonPanel" listener="#{pagingView.aqtpSelectValueChange}" />
+                        </p:selectOneMenu>
+                    </div>
+                    </p:outputPanel>
+                </p:outputPanel>                
+            </div>
+            <div class="popups-buttons">
+                <p:outputPanel id="aqtpButtonPanel">
+                    <p:commandLink id="confirmAddQBtn" styleClass="commandlinkslim" update=":form:growl, :form:pagePanel" rendered="#{pagingView.renderAqtpButton}" actionListener="#{pagingView.confirmAddQuestionToPage}" >
+                        <span class="ui-icon ui-icon-add"></span>
+                        <span class="label">Add</span>
+                    </p:commandLink>
+                    <p:commandLink id="notAddQBtn" styleClass="commandlinkslim" onclick="addQuestionToPageDialog.hide()">
+                        <span class="ui-icon ui-icon-back"></span>
+                        <span class="label">Back</span>
+                    </p:commandLink>
+                </p:outputPanel> 
+            </div>
+        </p:dialog>
+    </p:outputPanel>
+</div>

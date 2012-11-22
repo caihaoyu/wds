@@ -1,0 +1,210 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" class="content-frame-wrapper" >
+    <!--admin content panel start-->
+        <div class="administration-maintitle-panel">
+            <p:breadCrumb>
+                    <p:menuitem id="dashboardMenu" value="Dash Board" action="dashboard" />
+                    <p:menuitem id="editSurveyMenu" value="Survey Project" action="editSurvey" />
+            </p:breadCrumb>
+        </div>
+    	<div class="admin-page-title-panel">
+            <h:outputText value="#{msgs['page.admin.editsurvey.title']}" />
+        </div>
+        <hr class="admin-page-title-panel-line" size="1"/>
+        <div class="admin-page-description-txt">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras est magna, pretium sit amet, rhoncus nec, tristique molestie, leo. Aenean tortor sem, luctus at, luctus vel, consequat et, lectus. Proin id velit.</div>
+        <!--add new survey content panel start-->
+        <div class="admin-subtitle-panel">
+                <div class="admin-subtitle">Surveys</div>
+                <div class="admin-subtitle-btn">
+                    <p:commandLink id="addNewSurveyBtn" styleClass="commandlinkslim" action="addSurvey">
+                        <span class="ui-icon ui-icon-slim-add"></span>
+                        <span class="label">Add New Survey</span>
+                    </p:commandLink>
+                    <p:commandLink id="refreshSurveyBtn" styleClass="commandlinkslim" update="surveyListTable,:form:growl" actionListener="#{editSurveyView.refreshSurveys}">
+                        <span class="ui-icon2 ui-icon-refreshlist"></span>
+                        <span class="label">#{msgs['page.admin.editsurvey.refresh.button.txt']}</span>
+                    </p:commandLink>
+                </div>
+        </div>
+         <!--survey list table start-->
+        <br class="clearfloat"/>
+        <div class="edit-survey-and-questions-list-table-panel">
+            <p:outputPanel id="surveyListTablePanel">
+                <p:dataTable id="surveyListTable"
+                                value="#{editSurveySession.surveyList}"
+                                binding="#{editSurveyView.surveyListTable}"
+                                paginator="true"
+                                rows="5"
+                                rowsPerPageTemplate="5,10,15" 
+                                rendered="#{editSurveySession.surveyList.size()>0}"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                var="survey">
+                    <p:column headerText="ID">#{survey.sid}</p:column>
+                    <p:column headerText="Title">#{survey.surveytitle}</p:column>
+                    <p:column headerText="Description">#{survey.surveydescription}</p:column>
+                    <p:column headerText="Date created?">#{survey.datecreated}</p:column>
+                    <p:column>
+                        <p:commandLink id="editSurveyBtn" styleClass="commandlinkslim" update=":form:surveyDetailsPanel" actionListener="#{editSurveyView.processEditSurveyButton}">
+                            <span class="ui-icon ui-icon-edit"></span>
+                            <span class="label">Edit</span>
+                        </p:commandLink>
+                        <p:commandLink id="goToPageAndReorderBtn" styleClass="commandlinkslim" action="#{editSurveyView.toPaging}">
+                            <span class="ui-icon2 ui-icon-reorder"></span>
+                            <span class="label">Page and Re-order</span>
+                        </p:commandLink>
+                        <p:commandLink id="goToBranchAndLogicBtn" styleClass="commandlinkslim" action="#{editSurveyView.toBranching}">
+                            <span class="ui-icon2 ui-icon-branch"></span>
+                            <span class="label">Branch and Logic</span>
+                        </p:commandLink>
+                        <p:commandLink id="goToPreviewSurveyBtn" styleClass="commandlinkslim" action="#{editSurveyView.toPreview}">
+                            <span class="ui-icon2 ui-icon-branch"></span>
+                            <span class="label">Preview Survey</span>
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+            </p:outputPanel>
+        </div>
+        <br class="clearfloat"/>
+        <div>
+            <p:outputPanel id="surveyDetailsPanel" styleClass="survey-details-panel">
+                <p:panel header="#{editSurveyView.selectedSurvey.surveytitle}" style="position: relative;" rendered="#{editSurveyView.selectedSurvey != null}">
+                        <div class="paging-reording-and-branching-logos">
+                            <div>
+                                 <img src="../resources/images/paging-logo-24size.png" />
+                                 <h:commandLink id="goToPageAndReorderLink" action="#{editSurveyView.toPaging}">
+                                     <span>Page and Re-order</span>
+                                 </h:commandLink>
+                                 <img src="../resources/images/branching-logo-24size.png" />
+                                 <h:commandLink  id="goToBranchAndLogicLink" action="#{editSurveyView.toBranching}" >
+                                     <span>Branching and Logic</span>
+                                 </h:commandLink>
+                            </div>
+                            <br class="clearfloat"/>
+                        </div>
+                        <div class="edit-survey-maincontent">
+                            <!--left frame start-->
+                            <div class="edit-and-add-survey-content-frame">
+                                <table class="survey-table" width="100%" border="0" cellspacing="0" cellpadding="5">
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Survey title(*):</td>
+                                        <td class="survey-input-td">
+                                            <p:inputText id="edit-SurveyTitleInput" value="#{editSurveyView.selectedSurvey.surveytitle}" />
+                                            <p:message id="surveyTitleMessage" for="edit-SurveyTitleInput"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Survey description:</td>
+                                        <td class="survey-input-td">
+                                            <p:inputTextarea id="edit-SurveyDescriptionInput" rows="3" value="#{editSurveyView.selectedSurvey.surveydescription}" />
+                                            <p:message id="surveyDescriptionMessage" for="edit-SurveyDescriptionInput" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Survey welcome text:</td>
+                                        <td class="survey-input-td">
+                                            <p:inputTextarea id="edit-SurveyWelcomeTextInput" rows="3" value="#{editSurveyView.selectedSurvey.surveywelcometext}" />
+                                            <p:message id="surveyWelcomeMessage" for="edit-SurveyWelcomeTextInput" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Survey end text:</td>
+                                        <td class="survey-input-td">
+                                            <p:inputTextarea id="edit-SurveyEndTextInput" rows="3" value="#{editSurveyView.selectedSurvey.surveyendtext}" />
+                                            <p:message id="surveyAndTextMessage" for="edit-SurveyEndTextInput" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Supervisor:</td>
+                                        <td valign="top" class="survey-input-td">
+                                            <p:inputText id="edit-SupervisorInput" value="#{editSurveyView.selectedSurvey.supervisor}" />
+                                            <p:message id="supervisorMessage" for="edit-SupervisorInput" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--left frame end-->
+                           <!--right frame start-->
+                           <div class="edit-and-add-survey-content-frame">
+                               <table class="survey-table" width="100%" border="0" cellspacing="0" cellpadding="5">
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Supervisor Email:</td>
+                                        <td valign="top" class="survey-input-td">
+                                            <p:inputText id="edit-SupervisorEmailInput" value="#{editSurveyView.selectedSurvey.supervisoremail}" />
+                                            <p:message id="supervisorEmailMessage" for="edit-SupervisorEmailInput" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Survey Activited?</td>
+                                        <td valign="top" class="survey-raido-button">
+                                            <p:selectOneRadio id="edit-ActiveSelectOneRadio" value="#{editSurveyView.selectedSurvey.active}" styleClass="edit-survey-selecOne" layout="lineDirection">
+                                                <f:selectItem itemLabel="Yes" itemValue="Y" />
+                                                <f:selectItem itemLabel="No" itemValue="N" />
+                                            </p:selectOneRadio>
+                                            <p:message id="surveyActiveSelect" for="edit-ActiveSelectOneRadio" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Survey expires on:</td>
+                                        <td valign="top" class="survey-input-td edit-survey-input-expire">
+                                            <p:calendar id="edit-ExpiresSelectInputDate" value="#{editSurveyView.selectedSurvey.expires}" showOn="button" />
+                                            <p:message id="surveyExpireMessage" for="edit-ExpiresSelectInputDate" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Language of survey:</td>
+                                        <td valign="top" class="survey-raido-button">
+                                            <p:selectOneRadio id="edit-LanguageSelectOneRadio" value="#{editSurveyView.selectedSurvey.language}" styleClass="edit-survey-selecOne" layout="lineDirection">
+                                                <f:selectItem itemLabel="English" itemValue="EN" />
+                                                <f:selectItem itemLabel="Chinese" itemValue="CN" />
+                                            </p:selectOneRadio>
+                                            <p:message id="surveyLanguageSelect" for="edit-LanguageSelectOneRadio" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Allow survey to be saved?</td>
+                                        <td valign="top" class="survey-raido-button">
+                                            <p:selectOneRadio id="edit-AllowSaveSelectOneRadio" value="#{editSurveyView.selectedSurvey.allowsave}" styleClass="edit-survey-selecOne" layout="lineDirection">
+                                                <f:selectItem itemLabel="Yes" itemValue="Y" />
+                                                <f:selectItem itemLabel="No" itemValue="N" />
+                                            </p:selectOneRadio>
+                                            <p:message id="saveSurveySelect" for="edit-AllowSaveSelectOneRadio" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" class="survey-input-prompt">Allow attribute description?</td>
+                                        <td valign="top" class="survey-raido-button">
+                                        <p:selectOneRadio id="edit-AllowAttributeDescSelectOneRadio" value="#{editSurveyView.selectedSurvey.attributedescriptions}" styleClass="edit-survey-selecOne" layout="lineDirection">
+                                            <f:selectItem itemLabel="Yes" itemValue="Y" />
+                                            <f:selectItem itemLabel="No" itemValue="N" />
+                                        </p:selectOneRadio>
+                                        <p:message id="attributeDescriptionSelect" for="edit-AllowAttributeDescSelectOneRadio" />
+                                        </td>
+                                    </tr>
+                                </table>
+                           </div>
+                           <!--right frame end-->
+                           <br class="clearfloat"/>
+                        </div>
+                        <div class="commandlink_container">
+                            <p:commandLink id="saveSurveyBtn" styleClass="commandlink" actionListener="#{editSurveyView.processSaveSurveyButton}">
+                                <span class="ui-icon ui-icon-save"></span>
+                                <span class="label">#{msgs['page.admin.editsurvey.editselected.button.txt']}</span>
+                            </p:commandLink>
+                            <p:commandLink id="deleteSurveyBtn" styleClass="commandlink" actionListener="#{editSurveyView.processDeleteSurveyButton}">
+                                <span class="ui-icon ui-icon-delete"></span>
+                                <span class="label">#{msgs['page.admin.editsurvey.deleteselected.button.txt']}</span>
+                            </p:commandLink>
+                            <p:commandLink id="closeSurveyBtn" styleClass="commandlink" actionListener="#{editSurveyView.closeSurvey}" update="surveyDetailsPanel">
+                                <span class="ui-icon ui-icon-close"></span>
+                                <span class="label">Close</span>
+                            </p:commandLink>
+                        </div>
+                        <br class="clearfloat"/>
+                </p:panel>
+            </p:outputPanel>
+        </div>
+</div>

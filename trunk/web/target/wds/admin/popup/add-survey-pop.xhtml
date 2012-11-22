@@ -1,0 +1,42 @@
+<div
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+    <p:outputPanel styleClass="popups" id="popups">
+        <p:dialog id="warnDialog" header="Error: " resizable="false" dynamic="true" modal="true" draggable="false" widgetVar="warndl">  
+            <div class="popups-content">
+                <h:outputText value="#{addSurveyView.warnPopContent}" />
+            </div>
+            <div class="popups-buttons" >
+                <p:commandLink id="warnBackBtn" styleClass="commandlinkslim" onclick="warndl.hide()">
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Back</span>
+                </p:commandLink>
+            </div>   
+        </p:dialog>
+        
+        <p:dialog id="confirmAddSurveyDialog"
+              header="Please Confirm:"
+              resizable="false" 
+              dynamic="true" 
+              modal="true" 
+              draggable="false" 
+              widgetVar="confirmAddSurveyDialog">
+            <div class="popups-content">Create new survey?</div>
+            <div class="popups-buttons">
+                <p:commandLink id="confirmAddSurveyBtn" styleClass="commandlinkslim" action="#{addSurveyView.confirmAddNewSurvey}">
+                    <span class="ui-icon ui-icon-yes"></span>
+                    <span class="label">Yes</span>
+                </p:commandLink>
+                <p:commandLink id="addSurveyBackBtn" styleClass="commandlinkslim" onclick="confirmAddSurveyDialog.hide()">
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Back</span>
+                </p:commandLink>
+            </div>
+        </p:dialog>
+    </p:outputPanel>
+</div>

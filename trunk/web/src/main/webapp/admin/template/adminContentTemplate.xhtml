@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <f:loadBundle basename="messages" var="msgs"/>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/reset-min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/template.css" />        
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/utility.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/blackwood.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/admin-panel.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/theme.css" />
+        <ui:insert name="customHeader"/>
+    </h:head>
+    <h:body>
+        <f:view contentType="text/html"> 
+            <!-- Start new Theme -->
+            <div class="status-panel">
+                <p:ajaxStatus id="ajaxStatusPanel">
+                    <f:facet name="start">
+                        <div class="statu-start"><h:outputText value="Loading..." /></div>
+                    </f:facet>
+                    <f:facet name="complete">
+                            <h:outputText value="" />
+                    </f:facet>
+                    <f:facet name="error">
+                        <div class="statu-error"><h:outputText value="Error !" /></div>
+                    </f:facet>
+                </p:ajaxStatus>
+            </div>
+                <div id="header-panel">
+                 <div id="visible-header-panel">
+                     <div id="header-top">
+                         <div id="header-status-panel">
+                                <span>Welcome,xinxin</span>
+                                <span>|</span>
+                                Logout
+                                <span>|</span>
+                                Back to Front
+                         </div>
+                         <br class="clearfloat" />
+                         <div id="header-top-search">
+                         <input name="search-input" type="text" class="search-input"/>
+                         <input name="" type="button" class="search-button"/>
+                         </div>
+                     </div>
+                     <div id="admin-wds"><img border="0" src="../resources/images/admin-wds.png" width="237px" height="84" />
+                     </div>
+                     <div id="main-menus">
+                         <ui:insert name="mainMenu"/>
+                     </div>
+                 </div>
+            </div>
+            <h:form id="form">
+                    <ui:insert name="growl" />
+            <div id="content-panel">
+               <div id="visible-panel">
+                       <ui:insert name="page-content"/>
+                   <div id="popup-windows-panel">
+                       <ui:insert name="page-popup" />
+                   </div>
+               </div>
+            </div>
+            <div id="greyline"></div>
+            <div id="footer">
+                <div id="footer-content-panel">
+                     <ui:insert name="footer-content"/>
+                </div>
+            </div>
+            </h:form>
+    </f:view>
+    </h:body>
+</html>

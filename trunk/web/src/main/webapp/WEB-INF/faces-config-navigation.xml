@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>dashboard</from-outcome>
+        <to-view-id>/admin/dash-board.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>editQuestion</from-outcome>
+        <to-view-id>/admin/edit-question.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>addQuestion</from-outcome>
+        <to-view-id>/admin/add-question.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>editSurvey</from-outcome>
+        <to-view-id>/admin/edit-survey.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>addSurvey</from-outcome>
+        <to-view-id>/admin/add-survey.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>paging</from-outcome>
+        <to-view-id>/admin/page-and-reorder.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>branching</from-outcome>
+        <to-view-id>/admin/branching-and-logic.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>previewSurvey</from-outcome>
+        <to-view-id>/admin/preview-survey.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>newRule</from-outcome>
+        <to-view-id>/admin/newQuestionRule.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>ruleList</from-outcome>
+        <to-view-id>/admin/editQuestionRule.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/admin/*</from-view-id>
+    <navigation-case>
+        <from-outcome>toTest</from-outcome>
+        <to-view-id>/admin/test.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+
+</faces-config>

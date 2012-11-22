@@ -1,0 +1,103 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" class="content-frame-wrapper" >
+    <div class="preview-survey-title-panel">
+        <div class="preview-survey-title">Preview Survey: #{previewSurveyView.survey.surveytitle}</div>
+        <div class="exit-survey-button">
+            <p:commandLink id="exitPreviewBtn" styleClass="commandlinkslim" action="#{previewSurveyView.existPreview}">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Exit this survey</span>
+            </p:commandLink>
+        </div>
+        <br class="clearfloat"/>
+    </div>
+    <hr class="survey-title-line" size="1"/>
+    <div class="survey-intro-txt">#{previewSurveyView.survey.surveydescription}</div>
+    <p:outputPanel rendered="#{previewSurveyView.page eq null}">
+        This survey doesnt contain any page, please create page.
+    </p:outputPanel>
+    <p:outputPanel rendered="#{!(previewSurveyView.page eq null)}">
+        <div class="page-name-panel">
+            <div class="preview-survey-page-name">
+                <span>#{previewSurveyView.page.pagetitle}</span>
+            </div>
+            <div class="page-intro-txt">#{previewSurveyView.page.pageheader}</div>
+        </div>
+        <div class="preview-survey-content-panel">
+            <p:outputPanel rendered="#{previewSurveyView.pageBranch eq null}">
+                This page doesnt contain any branch, please create branch.
+            </p:outputPanel>
+            <p:outputPanel rendered="#{!(previewSurveyView.pageBranch eq null)}">
+                <p:outputPanel rendered="#{previewSurveyView.items eq null}">
+                    There is no question under this page, please add question.
+                </p:outputPanel>
+                <p:outputPanel rendered="#{!(previewSurveyView.items eq null)}">
+                    <p:outputPanel rendered="#{previewSurveyView.items.size()>0}">
+                        <p:dataGrid id="questionGrid" value="#{previewSurveyView.questions}" columns="1" var="q">
+                            <p:column>
+<!--                            Free Text Question-->
+                            <p:outputPanel rendered="#{q.questiontype eq 1}">
+                                <div class="preview-survey-content">
+                                    <span>#{q.questiontitle}</span>
+                                </div>
+                                <div class="qbody">
+                                    <p:outputPanel rendered="#{q.answertype eq 1}">
+                                        <p:inputText />
+                                    </p:outputPanel>
+                                    <p:outputPanel rendered="#{q.answertype eq 2}">
+                                        <p:inputTextarea />
+                                    </p:outputPanel>
+                                    <p:outputPanel rendered="#{q.answertype eq 3}">
+                                        <p:editor />
+                                    </p:outputPanel>
+                                </div>
+                            </p:outputPanel>
+<!--Rating Question-->
+                            <p:outputPanel rendered="#{q.questiontype eq 2}">
+                                 <div class="preview-survey-content">
+                                   <span>#{q.questiontitle}</span>
+                               </div>
+                               <div class="qbody">
+                                   <p:rating stars="#{q.rating}" />
+                               </div>
+                            </p:outputPanel>
+<!--Choice Question-->
+                            <div class="preview-survey-content">
+                                   <span>#{q.questiontitle}</span>
+                            </div>
+                            <div class="qbody">
+                                <p:outputPanel rendered="#{q.allowmultipile eq 'Y'}">
+                                    <p:selectManyCheckbox value="#{previewSurveyView.selectedAnswerId}" layout="pageDirection">
+                                        <f:selectItems value="#{q.answers}" var="answer" itemValue="#{answer.answerid}" itemLabel="#{answer.answertitle}" />
+                                        <p:ajax event="change" update=":form:growl" process="@this" listener="#{previewSurveyView.choiceValueChange(q.questionid)}" />
+                                    </p:selectManyCheckbox>
+                                    
+                                </p:outputPanel>
+                                <p:outputPanel rendered="#{q.allowmultipile eq 'N'}">
+                                    <p:selectOneRadio value="#{previewSurveyView.selectedAnswerId}" layout="pageDirection">
+                                        <f:selectItems value="#{q.answers}" var="answer" itemValue="#{answer.answerid}" itemLabel="#{answer.answertitle}" />
+                                        <p:ajax event="change" update=":form:growl" process="@this" listener="#{previewSurveyView.choiceValueChange(q.questionid)}" />
+                                    </p:selectOneRadio>
+                                </p:outputPanel>
+                                <p:outputPanel styleClass="yourAnswer" rendered="#{q.allowcustomized eq 'Y'}">
+                                    Your answer: <p:inputText />
+                                </p:outputPanel>
+                            </div>
+                        </p:column>
+                    </p:dataGrid>
+                        
+                    </p:outputPanel>
+                    <p:outputPanel rendered="#{!(previewSurveyView.items.size()>0)}">
+                        There is no question under this page, please add question.
+                    </p:outputPanel>
+                </p:outputPanel>
+            </p:outputPanel>
+        </div>
+        <div class="page-name-panel">
+            <div class="page-intro-txt">#{previewSurveyView.page.pagefooter}</div>
+        </div>
+    </p:outputPanel>
+</div>

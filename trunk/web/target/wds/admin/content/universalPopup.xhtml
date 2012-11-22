@@ -1,0 +1,28 @@
+<ice:panelGroup xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <!-- Universal Pop-Up Window model -->
+    <ice:panelPopup id="universal-popup" modal="true" rendered="true" visible="false" autoCentre="true">
+        <f:facet name="header">
+                <h:panelGrid width="100%" cellpadding="0" cellspacing="0" columns="2" columnClasses="popupTitle,popupClose">
+                    <ice:outputText id="universal-popup-title" />
+                    <h:commandButton actionListener="#{universalPopup.popUpDown}" type="button" image="../resources/images/popup-close.png" style="cursor: pointer;"/>
+                </h:panelGrid>
+        </f:facet>
+        <f:facet name="body">
+            <div id="popup-body-content">
+                <ice:panelGroup id="universal-popup-content-panel"/>
+            </div>
+            <div id="popup-body-buttons">
+                <ice:panelGroup id="universal-popup-buttons-panel" />
+            </div>
+        </f:facet>
+    </ice:panelPopup>
+    <!-- Universal Pop-Up Window model -->  
+    <h:outputScript library="js" name="questionPreview.js" />
+</ice:panelGroup>

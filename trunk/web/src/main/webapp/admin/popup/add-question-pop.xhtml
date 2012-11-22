@@ -1,0 +1,311 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <p:outputPanel styleClass="popups" id="popups">
+    <p:dialog id="previewFreeTextDlg" header="Preview Question: " resizable="false" dynamic="true" modal="true" draggable="false" widgetVar="previewFreeTextDlg">
+        <div class="popups-content">
+            <div class="preview-question-content">
+                <span>#{addQuestionView.newQuestion.questiontitle}</span>
+                <div class="qbody">
+                    <p:inputText id="freetextAnswerInputText" rendered="#{addQuestionView.newQuestion.answertype eq 1 and !addQuestionView.renderInputMask}" />
+                    <p:inputMask id="freetextAnswerInputMask" mask="#{addQuestionView.newQuestion.answermask}" 
+                                    rendered="#{addQuestionView.newQuestion.answertype eq 1 and addQuestionView.renderInputMask}" />
+                    <p:inputTextarea id="freetextAnswerInputTextarea" rendered="#{addQuestionView.newQuestion.answertype eq 2}" />
+                    <p:editor id="freetextAnswerEditor" rendered="#{addQuestionView.newQuestion.answertype eq 3}" />
+                </div>
+            </div>
+        </div>
+        <div class="popups-buttons" >
+            <p:commandLink id="previewFreeTextDlgBtn" styleClass="commandlinkslim" onclick="previewFreeTextDlg.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>
+    </p:dialog>
+    <p:dialog id="previewRatingDlg" header="Preview Question: " resizable="false" dynamic="true" modal="true" draggable="false" widgetVar="previewRatingDlg">
+        <div class="popups-content">
+            <div class="preview-question-content">
+                <span>#{addQuestionView.newQuestion.questiontitle}</span>
+                <div class="qbody">
+                    <p:rating id="ratingStars" stars="#{addQuestionView.newQuestion.rating}" /> 
+                </div>
+            </div>
+        </div>
+        <div class="popups-buttons">
+            <p:commandLink id="previewRatingDlgBtn" styleClass="commandlinkslim" onclick="previewRatingDlg.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>
+    </p:dialog>
+    <p:dialog id="previewChoiceDlg" header="Preview Question: " resizable="false" dynamic="true" modal="true" draggable="false" widgetVar="previewChoiceDlg">
+        <div class="popups-content">
+            <div class="preview-question-content">
+                <span>#{addQuestionView.newQuestion.questiontitle}</span>
+                <div class="qbody">
+                    <p:outputPanel rendered="#{addQuestionView.newQuestion.allowmultipile eq 'Y'}">
+                        <p:selectManyCheckbox layout="pageDirection">
+                            <f:selectItems value="#{addQuestionView.newQuestion.answers}" var="answer" itemLabel="#{answer.answertitle}" />
+                        </p:selectManyCheckbox>
+                    </p:outputPanel>
+                    <p:outputPanel rendered="#{addQuestionView.newQuestion.allowmultipile eq 'N'}">
+                        <p:selectOneRadio layout="pageDirection">
+                            <f:selectItems value="#{addQuestionView.newQuestion.answers}" var="answer" itemLabel="#{answer.answertitle}" />
+                        </p:selectOneRadio>
+                    </p:outputPanel>
+                    <p:outputPanel styleClass="yourAnswer" rendered="#{addQuestionView.newQuestion.allowcustomized eq 'Y'}">
+                        Your answer: <p:inputText />
+                    </p:outputPanel>
+                </div>
+            </div>
+        </div>
+        <div class="popups-buttons" >
+            <p:commandLink id="previewChoiceDlgBtn" styleClass="commandlinkslim" onclick="previewChoiceDlg.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>
+    </p:dialog>
+    <p:dialog id="previewMatrixDlg" header="Preview Question: " resizable="false" dynamic="true" modal="true" draggable="false" widgetVar="previewMatrixDlg">
+        <div class="popups-content">
+            <div class="preview-question-content">
+                <span>#{addQuestionView.newQuestion.questiontitle}</span>
+                <div class="qbody">
+                    <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 1}">
+                        <table>
+                            <tbody>
+                                <c:forEach items="#{addQuestionView.newQuestion.subquestions}" var="sq">
+                                <tr>
+                                    <td>#{sq.subquestiontitle}</td>
+                                    <td>
+                                        <p:inputText />
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </p:outputPanel>
+                    <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 2}">
+                        <table>
+                            <tbody>
+                                <c:forEach items="#{addQuestionView.newQuestion.subquestions}" var="sq">
+                                <tr>
+                                    <td>#{sq.subquestiontitle}</td>
+                                    <td>
+                                        <p:rating stars="5" />
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </p:outputPanel>
+                    <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 3}">
+                        <table>
+                            <tbody>
+                                <c:forEach items="#{addQuestionView.newQuestion.subquestions}" var="sq">
+                                <tr>
+                                    <td>#{sq.subquestiontitle}</td>
+                                    <td>
+                                        <p:outputPanel rendered="#{addQuestionView.newQuestion.allowmultipile eq 'Y'}">
+                                            <p:selectManyCheckbox>
+                                                <f:selectItems value="#{addQuestionView.newQuestion.columnchoices}" var="choice" itemValue="#{choice.columnchoiceid}" itemLabel="#{choice.columnchoicetitle}" />
+                                            </p:selectManyCheckbox>
+                                        </p:outputPanel>
+                                        <p:outputPanel rendered="#{addQuestionView.newQuestion.allowmultipile eq 'N'}">
+                                            <p:selectOneRadio>
+                                                <f:selectItems value="#{addQuestionView.newQuestion.columnchoices}" var="choice" itemValue="#{choice.columnchoiceid}" itemLabel="#{choice.columnchoicetitle}" />
+                                            </p:selectOneRadio>
+                                        </p:outputPanel>
+                                    </td>
+                                </tr>
+                                <p:outputPanel rendered="#{addQuestionView.newQuestion.allowcustomized eq 'Y'}">
+                                    <tr>
+                                        <td></td>
+                                        <td>Your own answer: <p:inputText /></td>
+                                    </tr>
+                                </p:outputPanel>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </p:outputPanel>
+                </div>
+            </div>
+        </div>
+        <div class="popups-buttons" >
+            <p:commandLink id="previewMatrixDlgBtn" styleClass="commandlinkslim" onclick="previewMatrixDlg.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>
+    </p:dialog>
+    <p:dialog id="warnDialog" header="Error: " resizable="false" dynamic="true" modal="true" draggable="false" widgetVar="warndl">  
+        <div class="popups-content">
+            <h:outputText value="#{addQuestionView.warnPopContent}" />
+        </div>
+        <div class="popups-buttons" >
+            <p:commandLink id="warnBackBtn" styleClass="commandlinkslim" onclick="warndl.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>   
+    </p:dialog>
+    <p:dialog id="confirmDeleteAnswerInput"
+              header="Please Confirm:"
+              resizable="false" 
+              dynamic="true" 
+              modal="true" 
+              draggable="false" 
+              widgetVar="confirmDeleteAnswerInput">
+        <div class="popups-content">Answer input is not empty, delete it anyway?</div>
+        <div class="popups-buttons">
+            <p:commandLink id="confirmAnswerDelete" styleClass="commandlinkslim" actionListener="#{addQuestionView.confirmDeleteAnswerInput}" 
+                           update=":form:newQuestionTabView:answersPanel,:form:newQuestionTabView:addAnswerButton,:form:newQuestionTabView:answerSelect,:form:previewChoiceDlg">
+                <span class="ui-icon ui-icon-yes"></span>
+                <span class="label">Yes</span>
+            </p:commandLink>
+            <p:commandLink id="answerBackBtn" styleClass="commandlinkslim" onclick="confirmDeleteAnswerInput.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>
+    </p:dialog>
+    <p:dialog id="confirmDeleteSubQuestionInput"
+              header="Please Confirm:"
+              resizable="false" 
+              dynamic="true" 
+              modal="true" 
+              draggable="false" 
+              widgetVar="confirmDeleteSubQuestionInput">
+        <div class="popups-content">Sub question input is not empty, delete it anyway?</div>
+        <div class="popups-buttons">
+            <p:commandLink id="confirmSubQDelete" styleClass="commandlinkslim" 
+                           actionListener="#{addQuestionView.confirmDeleteSubQuestionInput}" 
+                           update=":form:newQuestionTabView:subQuestionsPanel,:form:newQuestionTabView:addSubQuestionButton,:form:newQuestionTabView:subQuestionSelect,:form:newQuestionTabView:columnPanel,:form:previewMatrixDlg">
+                <span class="ui-icon ui-icon-yes"></span>
+                <span class="label">Yes</span>
+            </p:commandLink>
+            <p:commandLink id="subQBackBtn" styleClass="commandlinkslim" onclick="confirmDeleteSubQuestionInput.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>
+    </p:dialog>
+    <p:dialog id="confirmDeleteColumnChoiceInput"
+              header="Please Confirm:"
+              resizable="false" 
+              dynamic="true" 
+              modal="true" 
+              draggable="false" 
+              widgetVar="confirmDeleteColumnChoiceInput">
+        <div class="popups-content">Sub question input is not empty, delete it anyway?</div>
+        <div class="popups-buttons">
+            <p:commandLink id="confirmColumnChoiceDelete" styleClass="commandlinkslim" 
+                           actionListener="#{addQuestionView.confirmDeleteColumnChoiceInput}" 
+                           update=":form:newQuestionTabView:columnChoicePanel,:form:newQuestionTabView:columnChoiceButton,:form:newQuestionTabView:columnChoiceSelect,:form:previewMatrixDlg">
+                <span class="ui-icon ui-icon-yes"></span>
+                <span class="label">Yes</span>
+            </p:commandLink>
+            <p:commandLink id="columnChoiceBackBtn" styleClass="commandlinkslim" onclick="confirmDeleteColumnChoiceInput.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>
+    </p:dialog>
+    <p:dialog id="confirmAddQuestionDialog"
+              header="Please Confirm: " 
+              resizable="false" 
+              dynamic="true" 
+              modal="true" 
+              draggable="false" 
+              widgetVar="confirmAddQuestionDialog">  
+        <div class="popups-content">
+                <p:outputPanel rendered="#{addQuestionView.newQuestion.questiontype eq 1}">
+                    You're about to save this free text question:
+                    <div class="Qtitle">#{addQuestionView.newQuestion.questiontitle}</div>
+                    <div class="attr">
+                        <div>Allow Description:</div>
+                        <div class="attr-value">#{addQuestionView.newQuestion.allowdescription}</div>
+                        <br class="clearfloat"/>
+                    </div>
+                    <c:if test="#{addQuestionView.newQuestion.answertype eq 1 and addQuestionView.newQuestion.answermask != null}">
+                        <div class="attr">
+                            <div>Answer mask:</div>
+                            <div class="attr-value">#{addQuestionView.newQuestion.answermask}</div>
+                            <br class="clearfloat"/>
+                        </div>
+                    </c:if>     
+                </p:outputPanel>
+                     <p:outputPanel rendered="#{addQuestionView.newQuestion.questiontype eq 2}">
+                        You're about to save this rating question:
+                        <div class="Qtitle">#{addQuestionView.newQuestion.questiontitle}</div>
+                        <div class="attr">
+                            <div>Allow Description:</div>
+                            <div class="attr-value">#{addQuestionView.newQuestion.allowdescription}</div>
+                            <br class="clearfloat"/>
+                        </div>
+                        <div class="attr">
+                            <div>Stars:</div>
+                            <div class="attr-value">#{addQuestionView.newQuestion.rating}</div>
+                            <br class="clearfloat"/>
+                        </div>
+                    </p:outputPanel>
+            <p:outputPanel rendered="#{addQuestionView.newQuestion.questiontype eq 3}">
+                    You're about to save this choice question:
+                    <div class="Qtitle">#{addQuestionView.newQuestion.questiontitle}</div>
+                    <div class="attr">
+                        <div>Allow Description:</div>
+                        <div class="attr-value">#{addQuestionView.newQuestion.allowdescription}</div>
+                        <br class="clearfloat"/>
+                    </div>
+                    <div class="attr">
+                        <div>Number of answers:</div>
+                        <div class="attr-value">#{addQuestionView.newQuestion.answers.size()}</div>
+                        <br class="clearfloat"/>
+                    </div>
+                    <p:outputPanel rendered="#{addQuestionView.findEmptyAnswer}">
+                        <div class="notes">
+                            <span class="in-red">*</span>
+                            Empty answers find for this question.Empty answers will be automatically deleted.
+                        </div>
+                    </p:outputPanel>
+            </p:outputPanel>
+            <p:outputPanel rendered="#{addQuestionView.newQuestion.questiontype eq 4}">
+                You're about to save this matrix question:
+                <div class="Qtitle">#{addQuestionView.newQuestion.questiontitle}</div>
+                <div class="attr">
+                    <div>Allow Description:</div>
+                    <div class="attr-value">#{addQuestionView.newQuestion.allowdescription}</div>
+                    <br class="clearfloat"/>
+                </div>
+                <div class="attr">
+                    <div>Column Type:</div>
+                    <div class="attr-value">#{addQuestionView.newQuestion.columnTypeByName}</div>
+                    <br class="clearfloat"/>
+                </div>
+                <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 3}">
+                    <div class="attr">
+                        <div>Sub Questions:</div>
+                        <div class="attr-value">#{addQuestionView.newQuestion.subquestions.size()}</div>
+                        <br class="clearfloat"/>
+                    </div>
+                    <div  class="attr">
+                        <div>Column Choices: </div>
+                        <div class="attr-value">#{addQuestionView.newQuestion.columnchoices.size()}</div>
+                        <br class="clearfloat"/>
+                     </div>   
+                </p:outputPanel>
+            </p:outputPanel>
+        </div>
+        <div class="popups-buttons">
+            <p:commandLink id="confirmAddQ" styleClass="commandlinkslim" action="#{addQuestionView.confirmAddQuestion}">
+                <span class="ui-icon ui-icon-yes"></span>
+                <span class="label">Yes</span>
+            </p:commandLink>
+            <p:commandLink id="addQBackBtn" styleClass="commandlinkslim" onclick="confirmAddQuestionDialog.hide()">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+        </div>   
+    </p:dialog>
+    </p:outputPanel>
+</div>

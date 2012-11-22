@@ -1,0 +1,212 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <div class="administration-maintitle-panel">
+        <p:breadCrumb>
+                <p:menuitem id="dashboardMenu" value="Dash Board" action="dashboard" />
+                <p:menuitem id="editSurveyMenu" value="#{editSurveySession.selectedSurvey.surveytitle}" action="editSurvey" />
+                <p:menuitem id="pageAndReorderMenu" value="Page and Re-Order" action="paging" />
+        </p:breadCrumb>
+    </div>
+    <div class="admin-page-title-panel"><h:outputText value="#{msgs['page.admin.pagingView.title']}" /></div>
+    <hr class="admin-page-title-panel-line" size="1"/>
+    <div class="admin-page-description-txt">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras est magna, pretium sit amet, rhoncus nec, tristique molestie, leo. Aenean tortor sem, luctus at, luctus vel, consequat et, lectus. Proin id velit.
+    </div>
+    <div class="admin-subtitle-panel">
+        <div class="admin-subtitle">#{editSurveySession.selectedSurvey.surveytitle}</div>
+        <div class="admin-subtitle-btn">
+            <p:commandLink id="addNewPageBtn" styleClass="commandlinkslim" update="pagePanel,:form:growl" actionListener="#{pagingView.processAddNewPageButton}">
+                <span class="ui-icon2 ui-icon-add-page"></span>
+                <span class="label">Add New Page</span>
+            </p:commandLink>
+            <h:commandLink id="editAnotherSurveyBtn" styleClass="commandlinkslim" action="editSurvey" >
+                <span class="ui-icon ui-icon-edit"></span>
+                <span class="label">Edit another survey</span>
+            </h:commandLink>
+            <h:commandLink id="editBranchingBtn" styleClass="commandlinkslim" action="branching" >
+                <span class="ui-icon2 ui-icon-branch"></span>
+                <span class="label">Edit Branching and Logic</span>
+            </h:commandLink>
+        </div>
+    </div>
+    <div id="paging-and-reordering-content-panel">
+        <div class="paging-and-reordering-pages-panel-left">
+            <div class="paging-and-reordering-page-frame">
+                <p:outputPanel id="pagePanel">
+                    <p:outputPanel rendered="#{!(editSurveySession.pages.size()>0)}">
+                        This survey doesnt have any pages, click the "add page" button to add a new page.
+                    </p:outputPanel>
+                    <p:dataGrid id="pagesGrid" value="#{editSurveySession.pages}" 
+                                binding="#{pagingView.pageGrid}" 
+                                rendered="#{editSurveySession.pages.size()>0}" 
+                                var="page" columns="1">
+                        <p:column>
+                            <div class="paging-and-reordering-pagePanel">
+                                <p:panel header="#{page.pagetitle} (#{page.pagebranches.size()})">
+                                    <span class="paging-and-reordering-pageID">Page ID: <h:outputText value="#{page.pageid}" /></span>
+                                    <div class="paging-and-reordering-pages-panel-title-button">
+                                        <p:commandLink id="movePageUpBtn" styleClass="commandlinkslim" update=":form:pagePanel,:form:popups,:form:growl" actionListener="#{pagingView.movingPageUp}" rendered="#{pagingView.renderMoveUp()}" >
+                                            <span class="ui-icon ui-icon-up"></span>
+                                            <span class="label">Up</span>
+                                        </p:commandLink>
+                                        <p:commandLink id="movePageDownBtn" styleClass="commandlinkslim" update=":form:pagePanel,:form:popups,:form:growl" actionListener="#{pagingView.movingPageDown}" rendered="#{pagingView.renderMoveDown()}">
+                                            <span class="ui-icon ui-icon-down"></span>
+                                            <span class="label">Down</span>
+                                        </p:commandLink>
+                                        <p:commandLink id="addNewBranchBtn" styleClass="commandlinkslim" update=":form:pagePanel,:form:growl" actionListener="#{pagingView.processAddBranchButton}">
+                                            <span class="ui-icon ui-icon-slim-add"></span>
+                                            <span class="label">New Branch</span>
+                                        </p:commandLink>
+                                        <p:commandLink id="editPageBtn" styleClass="commandlinkslim" update=":form:popups" actionListener="#{pagingView.processEditPageButton}">
+                                            <span class="ui-icon ui-icon-edit"></span>
+                                            <span class="label">Edit</span>
+                                        </p:commandLink>
+                                        <p:commandLink id="deletePageBtn" styleClass="commandlinkslim" update=":form:pagePanel,:form:popups,:form:growl" actionListener="#{pagingView.processRemovePageButton}">
+                                            <span class="ui-icon ui-icon-delete"></span>
+                                            <span class="label">Delete</span>
+                                        </p:commandLink>
+                                    </div>
+                                    <br class="clearfloat"/>
+                                    <div id="pageBranch-accordion-panel">
+                                        <p:dataGrid id="pageBranchGrid" value="#{page.pagebranches}" binding="#{pagingView.pageBranchGrid}" rendered="#{page.pagebranches.size()>0}" var="pagebranch" columns="1">
+                                            <p:column>
+                                                <p:panel header="#{pagebranch.branchname}(#{pagebranch.items.size()})" collapsed="false" toggleSpeed="0" toggleable="true" >
+                                                    <span class="paging-and-reordering-page-branchID">Page Branch ID: #{pagebranch.branchid}</span>
+                                                    <f:facet name="options">
+                                                        <p:menu>
+                                                            <p:submenu label="Branch Options: "> 
+                                                                <p:menuitem id="setDefaultBranch" value="Set Default" update=":form:pagePanel,:form:growl" actionListener="#{pagingView.defaultBranchValueChange}" rendered="#{pagebranch.main eq false}" />
+                                                                <p:menuitem id="deletePageBranch" value="Delete" update=":form:pagePanel,:form:growl" actionListener="#{pagingView.processRemovePageBranchFromPage}"/>
+                                                            </p:submenu>
+                                                        </p:menu>
+                                                    </f:facet>
+                                                    <div class="paging-and-reordering-pages-panel-content">
+                                                        <p:dataTable id="questionDataTable" value="#{pagebranch.items}" rowIndexVar="iindex" var="item" binding="#{pagingView.itemTable}" rendered="#{pagebranch.items.size()>0}">
+                                                            <p:column styleClass="question-title">
+                                                                <f:facet name="header">Question Under Branch</f:facet>
+                                                                <p:outputPanel rendered="#{item.hidden}">
+                                                                    <h:outputText styleClass="paging-and-reordering-pages-panel-content-text-hidden" value="#{questionManager.get(item.questionid).questiontitle}">
+                                                                       <f:converter converterId="stringLengthConverter"/>
+                                                                       <f:attribute name="length" value="75" />
+                                                                    </h:outputText>
+                                                                    <span class="paging-and-reordering-pages-panel-content-type-hidden">ID:#{questionManager.get(item.questionid).questionid} </span> 
+                                                                    <h:outputText styleClass="paging-and-reordering-pages-panel-content-type-hidden" value="[#{questionManager.get(item.questionid).questionTypeByName}]"/>
+                                                                    <p:commandLink id="showHiddenQ" styleClass="paging-and-reordering-pages-panel-content-hidden" 
+                                                                                   update=":form:pagePanel"
+                                                                                   value="show question" 
+                                                                                   actionListener="#{pagingView.processHide}">
+                                                                    </p:commandLink>
+                                                                </p:outputPanel>
+                                                                <p:outputPanel rendered="#{!item.hidden}">
+                                                                    <h:outputText styleClass="paging-and-reordering-pages-panel-content-text" value="#{questionManager.get(item.questionid).questiontitle}">
+                                                                       <f:converter converterId="stringLengthConverter"/>
+                                                                       <f:attribute name="length" value="75" />
+                                                                    </h:outputText>
+                                                                    <span class="paging-and-reordering-pages-panel-content-type">ID:#{questionManager.get(item.questionid).questionid} </span> 
+                                                                    <h:outputText styleClass="paging-and-reordering-pages-panel-content-type" value="[#{questionManager.get(item.questionid).questionTypeByName}]"/>
+                                                                    <p:commandLink id="hideQ" styleClass="paging-and-reordering-pages-panel-content-hidden" 
+                                                                                   value="hide question" 
+                                                                                   update=":form:pagePanel" 
+                                                                                   actionListener="#{pagingView.processHide}">
+                                                                    </p:commandLink>
+                                                                </p:outputPanel>
+                                                            </p:column>
+                                                            <p:column>
+                                                                <f:facet name="header">Option</f:facet>
+                                                                <p:commandButton id="deletePageBranchQ" icon="ui-icon-closethick"
+                                                                                 styleClass="delete-button"
+                                                                                 update=":form:pagePanel,:form:growl"
+                                                                                 title="Remove question from page branch"
+                                                                                 actionListener="#{pagingView.processRemoveQuestionFromPageBranch}">
+                                                                </p:commandButton>
+                                                                <p:commandButton id="moveQUp" icon="ui-icon-triangle-1-n"
+                                                                                 styleClass="move-answer-button"
+                                                                                 update=":form:pagePanel,:form:growl"
+                                                                                 title="Move question up"
+                                                                                 rendered="#{!(iindex eq 0)}"
+                                                                                 actionListener="#{pagingView.movingQuestionUp}">
+                                                                </p:commandButton>
+                                                                <p:commandButton id="moveQDown" icon="ui-icon-triangle-1-s"
+                                                                                 styleClass="move-answer-button"
+                                                                                 update=":form:pagePanel,:form:growl"
+                                                                                 title="Move question down"
+                                                                                 rendered="#{!(iindex eq pagebranch.items.size()-1)}"
+                                                                                 actionListener="#{pagingView.movingQuestionDown}">
+                                                                </p:commandButton>
+                                                            </p:column>
+                                                        </p:dataTable>
+                                                    </div>
+                                                    <br class="clearfloat" />
+                                                </p:panel>
+                                            </p:column>
+                                        </p:dataGrid>
+                                    </div>
+                                </p:panel>
+                            </div>
+                        </p:column>
+                    </p:dataGrid>
+                </p:outputPanel>
+            </div>
+        </div>
+        <div class="paging-and-reordering-pages-panel-right">
+            <!--right side content start-->
+            <div class="paging-and-reordering-question-search-input-panel">
+                <h:inputText id="searchCriteria" onkeydown="if (event.keyCode == 13) document.getElementById('iceform:searchButton').click()" styleClass="paging-and-reordering-question-search-input" />
+<!-- 这里有问题需要处理  -->
+                <div class="search-button">
+                    <p:commandButton id="searchButton" 
+                                    icon="ui-icon-search"
+                                    update="searchResultTablePanel,clearSearchButton,:form:growl"
+                                    styleClass="paging-and-reordering-question-search-button"
+                                    actionListener="#{pagingView.processSearchQuestionButton}" />
+                </div>
+            <br class="clearfloat"/>
+            </div>
+
+            <div class="clear-search-result-btn">
+                <p:outputPanel id="clearSearchButton">
+                    <p:commandLink id="clearResultBtn" styleClass="commandlinkslim"
+                               actionListener="#{pagingView.clearSearchResult}"
+                               update="searchResultTablePanel,clearSearchButton"
+                               rendered="#{pagingView.questionSearchResult.size()>0}">
+                        <span class="ui-icon ui-icon-delete"></span>
+                        <span class="label">Clear Result</span>
+                    </p:commandLink>
+                </p:outputPanel>
+            </div>
+            <br class="clearfloat"/>
+            <div class="paging-and-reordering-question-search-result-panel">
+                <p:outputPanel id="searchResultTablePanel">
+                    <p:dataTable id="searchResultTable"
+                                 value="#{pagingView.questionSearchResult}"
+                                 var="question"
+                                 rows="10"
+                                 paginator="true"
+                                 rowsPerPageTemplate="5,10,15"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowKey="#{question.questionid}"
+                                 binding="#{pagingView.searchResultTable}"
+                                 rendered="#{pagingView.questionSearchResult.size()>0}">
+                        <p:column headerText="Title" >
+                            <h:outputText styleClass="question-title" value="#{question.questiontitle}">
+                                <f:converter converterId="stringLengthConverter"/>
+                                <f:attribute name="length" value="75" />
+                            </h:outputText>
+                            <h:outputText styleClass="question-type" value="ID:#{question.questionid} [#{question.questionTypeByName}]"/>
+                        </p:column>
+                        <p:column headerText="Option">
+                            <p:commandButton id="addQToPage" icon="ui-icon-circle-plus"
+                                             actionListener="#{pagingView.processAddQuestionToPage}">
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+            </div>
+        </div>
+        <br class="clearfloat"/>
+    </div>
+</div>

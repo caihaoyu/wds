@@ -1,0 +1,333 @@
+<p:panel xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:c="http://java.sun.com/jsp/jstl/core"
+       xmlns:p="http://primefaces.org/ui" styleClass="content-frame-wrapper">
+    Prime faces component test page:
+    <br/>
+    <br/>
+    Button:
+    <br/>
+    <p:button value="Bookmark">  
+        <f:param name="productId" value="10" />  
+    </p:button>  
+    <br/>
+    <br/>
+    Calendar:
+    <br/>
+    <p:calendar showOn="button" />
+    <br/>
+    <br/>
+    DataTable:
+    <br/>
+    <p:dataTable value="#{editQuestionView.questionList}" id="questionTable" 
+                 var="question" paginator="true" rowKey="#{question.questionid}" selection="#{editQuestionView.selectedQuestions}" rows="10">
+        <f:facet name="header">  
+            Questions in DataBase
+        </f:facet> 
+        <p:column selectionMode="multiple"/>
+        <p:column headerText="Question Title">#{question.questiontitle}</p:column>
+        <p:column headerText="Question Type">#{question.questiontype}</p:column>
+        <p:column headerText="Status">
+            <h:outputText styleClass="edit-question-status-free" value="Free" rendered="#{!question.inuse}"/>
+            <h:outputText styleClass="edit-question-status-inuse" value="In Use" rendered="#{question.inuse}"/>
+        </p:column>
+    </p:dataTable>
+    <br/>
+    <br/>
+    Popup (dialog): 
+    <br/>
+    <p:commandButton value="Modal" onclick="dlg2.show();" type="button"/>
+    <p:dialog header="Modal Dialog" resizable="false" widgetVar="dlg2" modal="true" height="100">  
+        <h:outputText value="This is a Modal Dialog." />  
+    </p:dialog>
+    <br/>
+    <br/>
+    InputText: 
+    <br/>
+    <p:inputText />  
+    <br/>
+    <br/>
+    InputTextarea: 
+    <br/>
+    <p:inputTextarea style="width:300px;height:100px;" effectDuration="400" /> 
+    <br/>
+    <br/>
+    Branching and logic static:
+    <br/>
+    <br/>
+    
+                 <!-- insert content here --> 
+             <div class="branching-and-logic-content-panel">             
+                  <p:panel header="Page 1">
+                     <span class="branching-and-logic-pageID">Page ID: 80</span>
+                     <div id="branchLogic-branchs-content-panel">
+                         <div class="branchLogic-branch-content">
+                             <div class="branchLogic-branch-name"><span>Branch 1</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                             <div class="branchLogic-question-content-panel">
+                                     <div class="branchLogic-question-content">
+                                         <div class="branchLogic-question-title-panel">
+                                             <span class="branchLogic-question">What is the name of your company and your current (or intended) URL?</span>
+                                             <input type="button" value="New Rule" class="branchLogic-pages-panel-buttons"></input>
+                                             <input type="button" value="Edit Rules" class="branchLogic-pages-panel-buttons"></input>
+                                             <span class="branchLogic-question-type">Free Text</span>
+                                         </div>
+                                         <!--page1 branch1 Q1 edit rules starts-->
+                                         <div class="branchLogic-pages-rules-panel">
+                                               <div class="branchLogic-pages-rules-edit-panel">If the user
+                                                   <span>does not answer</span> this question then<span> page 1 will be skipped</span>
+                                                   <input name="" type="button" value="Edit" />
+                                                   <input name="" type="button" value="Delete"/>
+                                               </div>
+                                               <div class="branchLogic-pages-rules-edit-panel">If the user
+                                                   <span>answer</span> this question then<span> the survey will finish</span>
+                                                   <input name="" type="button" value="Edit" />
+                                                   <input name="" type="button" value="Delete"/>
+                                               </div>
+                                               <div class="branchLogic-pages-rules-edit-panel-buttons">
+                                               	   <input name="" type="button" value="Done" />
+                                                   <input name="" type="button" value="Cancel"/>
+                                               </div>
+                                        </div>
+                                         <!--page1 branch1 Q1 edit rules ends-->
+                                         <!-- page1 branch1  Q1 new rules starts-->
+                                         <div class="branchLogic-pages-rules-panel">
+                                               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                      <tr>
+                                                            <td class="branchLogic-pages-rules-panel-left-frame">
+                                                                <span>If the user...</span>
+                                                                <p><input name="" type="radio" value="" /><span>Answer</span> this question</p>
+                                                                <p><input name="" type="radio" value="" /><span>Does not</span> answer this question</p>
+                                                            </td>
+                                                            <td class="branchLogic-pages-rules-panel-middle-line"></td>
+                                                            <td class="branchLogic-pages-rules-panel-right-frame">
+                                                                <span>...then...</span>
+                                                                <p><input name="" type="radio" value="" /><span>Jump</span> to this page
+                                                                <select name="">
+                                                                      <option value="Page1">Page 1</option>
+                                                                      <option value="Page3">Page 3</option>
+                                                                      <option value="Page4">Page 4</option>
+                                                                </select></p>
+                                                                <p><input name="" type="radio" value="" /><span>Skip</span> this question
+                                                                <select name="">
+                                                                      <option value="Page1">Page 1</option>
+                                                                      <option value="Page3">Page 3</option>
+                                                                      <option value="Page4">Page 4</option>
+                                                                </select></p>
+                                                                <p><input name="" type="radio" value="" /><span>Force</span> survey finish</p>
+                                                            </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td colspan="3" class="branchLogic-pages-rules-panel-buttons">
+                                                          <input name="" type="button" value="Done"/>
+                                                          <input name="" type="button" value="Cancel" />
+                                                        </td>
+                                                      </tr>
+                                               </table>
+                                         </div>
+                                         <!-- page1 branch1 Q1 new rules ends--> 
+                                     </div>
+                                     <br class="clearfloat"/>
+                                     <!-- page1 branch1 Q2 starts--> 
+                                     <div class="branchLogic-question-content">
+                                         <div class="branchLogic-question-title-panel">
+                                             <span class="branchLogic-question">How did you hear about us?</span>
+                                             <input type="button" value="New Rule" class="branchLogic-pages-panel-buttons"></input>
+                                             <input type="button" value="Edit Rules" class="branchLogic-pages-panel-buttons"></input>
+                                             <span class="branchLogic-question-type">Multiple choice</span>
+                                         </div>
+                                         <!--page1 branch1 Q2 edit rules starts-->
+                                         <div class="branchLogic-pages-rules-panel">
+                                               <div class="branchLogic-pages-rules-edit-panel">If the user
+                                                   <span>answer</span> this question then<span> jump to page 3</span>
+                                                   <input name="" type="button" value="Edit" />
+                                                   <input name="" type="button" value="Delete"/>
+                                               </div>
+                                               <div class="branchLogic-pages-rules-edit-panel">If the user 
+                                                   <span>selects Answer 2</span> then<span> Page 1 will be skipped</span>
+                                                   <input name="" type="button" value="Edit" />
+                                                   <input name="" type="button" value="Delete"/>
+                                               </div>
+                                               <div class="branchLogic-pages-rules-edit-panel-buttons">
+                                               	   <input name="" type="button" value="Done" />
+                                                   <input name="" type="button" value="Cancel"/>
+                                               </div>
+                                        </div>
+                                         <!--page1 branch1 Q2 edit rules ends-->
+                                         <!-- page1 branch1  Q2 new rules starts-->
+                                         <div class="branchLogic-pages-rules-panel">
+                                               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                      <tr>
+                                                            <td class="branchLogic-pages-rules-panel-left-frame">
+                                                                <span>If the user...</span>
+                                                                <p><input name="" type="radio" value="" /><span>Answer</span> this question</p>
+                                                                <p><input name="" type="radio" value="" /><span>Does not</span> answer this question</p>
+                                                                <p><input name="" type="radio" value="" />
+                                                                    <span>Choose</span>
+                                                                    <select name="">
+                                                                      <option value="Page1">Answer 3</option>
+                                                                      <option value="Page3">Answer 5</option>
+                                                                      <option value="Page4">Answer 7</option>
+                                                                    </select>
+                                                                </p>
+                                                                <p><input name="" type="radio" value="" />
+                                                                    <span>Does not</span> choose
+                                                                    <select name="">
+                                                                      <option value="Page1">Answer 3</option>
+                                                                      <option value="Page3">Answer 5</option>
+                                                                      <option value="Page4">Answer 7</option>
+                                                                    </select>
+                                                                </p>
+                                                            </td>
+                                                            <td class="branchLogic-pages-rules-panel-middle-line"></td>
+                                                            <td class="branchLogic-pages-rules-panel-right-frame">
+                                                                <span>...then...</span>
+                                                                <p><input name="" type="radio" value="" /><span>Jump</span> to this page
+                                                                <select name="">
+                                                                      <option value="Page1">Page 1</option>
+                                                                      <option value="Page3">Page 3</option>
+                                                                      <option value="Page4">Page 4</option>
+                                                                </select></p>
+                                                                <p><input name="" type="radio" value="" /><span>Skip</span> this question
+                                                                <select name="">
+                                                                      <option value="Page1">Page 1</option>
+                                                                      <option value="Page3">Page 3</option>
+                                                                      <option value="Page4">Page 4</option>
+                                                                </select></p>
+                                                                <p><input name="" type="radio" value="" /><span>Force</span> survey finish</p>
+                                                            </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td colspan="3" class="branchLogic-pages-rules-panel-buttons">
+                                                          <input name="" type="button" value="Done"/>
+                                                          <input name="" type="button" value="Cancel" />
+                                                        </td>
+                                                      </tr>
+                                               </table>
+                                         </div>
+                                         <!-- page1 branch1 Q2 new rules ends--> 
+                                     </div>
+                                     <br class="clearfloat"/>
+                                     <!-- page1 branch1 Q2 ends--> 
+                                     <!-- page1 branch1 Q3 starts-->
+                                     <div class="branchLogic-question-content">
+                                         <div class="branchLogic-question-title-panel">
+                                             <span class="branchLogic-question">How would you rate your experience with Customer Support?</span>
+                                             <input type="button" value="New Rule" class="branchLogic-pages-panel-buttons"></input>
+                                             <input type="button" value="Edit Rules" class="branchLogic-pages-panel-buttons"></input>
+                                             <span class="branchLogic-question-type">Matrix</span>
+                                         </div>
+                                         <!--page1 branch1 Q3 edit rules starts-->
+                                         <div class="branchLogic-pages-rules-panel">
+                                               <div class="branchLogic-pages-rules-edit-panel">If the user
+                                                   <span>does not answer</span> this question then<span> page 1 will be skipped</span>
+                                                   <input name="" type="button" value="Edit" />
+                                                   <input name="" type="button" value="Delete"/>
+                                               </div>
+                                               <div class="branchLogic-pages-rules-edit-panel">If the user
+                                                   <span>answer</span> this question then<span> the survey will finish</span>
+                                                   <input name="" type="button" value="Edit" />
+                                                   <input name="" type="button" value="Delete"/>
+                                               </div>
+                                               <div class="branchLogic-pages-rules-edit-panel-buttons">
+                                               	   <input name="" type="button" value="Done" />
+                                                   <input name="" type="button" value="Cancel"/>
+                                               </div>
+                                        </div>
+                                         <!--page1 branch1 Q3 edit rules ends-->
+                                         <!-- page1 branch1  Q3 new rules starts-->
+                                         <div class="branchLogic-pages-rules-panel">
+                                               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                      <tr>
+                                                            <td class="branchLogic-pages-rules-panel-left-frame">
+                                                                <span>If the user...</span>
+                                                                <p><input name="" type="radio" value="" /><span>Answer</span> this question</p>
+                                                                <p><input name="" type="radio" value="" /><span>Does not</span> answer this question</p>
+                                                            </td>
+                                                            <td class="branchLogic-pages-rules-panel-middle-line"></td>
+                                                            <td class="branchLogic-pages-rules-panel-right-frame">
+                                                                <span>...then...</span>
+                                                                <p><input name="" type="radio" value="" /><span>Jump</span> to this page
+                                                                <select name="">
+                                                                      <option value="Page1">Page 1</option>
+                                                                      <option value="Page3">Page 3</option>
+                                                                      <option value="Page4">Page 4</option>
+                                                                </select></p>
+                                                                <p><input name="" type="radio" value="" /><span>Skip</span> this question
+                                                                <select name="">
+                                                                      <option value="Page1">Page 1</option>
+                                                                      <option value="Page3">Page 3</option>
+                                                                      <option value="Page4">Page 4</option>
+                                                                </select></p>
+                                                                <p><input name="" type="radio" value="" /><span>Force</span> survey finish</p>
+                                                            </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td colspan="3" class="branchLogic-pages-rules-panel-buttons">
+                                                          <input name="" type="button" value="Done"/>
+                                                          <input name="" type="button" value="Cancel" />
+                                                        </td>
+                                                      </tr>
+                                               </table>
+                                         </div>
+                                         <!-- page1 branch1 Q3 new rules ends--> 
+                                     </div>
+                                     <br class="clearfloat"/>
+                                    <!-- page1 branch1 Q3 ends--> 
+                              </div>  
+                         </div>
+                         <div class="branchLogic-branch-content">
+                             <div class="branchLogic-branch-name"><span>Default Branch</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                         </div>
+                        <div class="branchLogic-branch-content">
+                            <div class="branchLogic-branch-name"><span>Branch 3</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                        </div>
+                    </div>
+                  </p:panel> 
+                  <p:panel header="Page 2">
+                     <span class="branching-and-logic-pageID">Page ID: 80</span>
+                     <div id="branchLogic-branchs-content-panel">
+                         <div class="branchLogic-branch-content">
+                             <div class="branchLogic-branch-name"><span>Branch 1</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                         </div>
+
+                         <div class="branchLogic-branch-content">
+                             <div class="branchLogic-branch-name"><span>Default Branch</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                         </div>
+                        <div class="branchLogic-branch-content">
+                            <div class="branchLogic-branch-name"><span>Branch 3</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                        </div>
+                    </div>
+                  </p:panel> 
+                  <p:panel header="Page 3">
+                     <span class="branching-and-logic-pageID">Page ID: 80</span>
+                     <div id="branchLogic-branchs-content-panel">
+                         <div class="branchLogic-branch-content">
+                             <div class="branchLogic-branch-name"><span>Branch 1</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                             <div class="branchLogic-question-content-panel">
+                                 <div class="branchLogic-question-content">What is the name of your company and your current (or intended) URL?
+                                 </div>
+                             </div>
+                         </div>
+
+                         <div class="branchLogic-branch-content">
+                             <div class="branchLogic-branch-name"><span>Default Branch</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                         </div>
+                        <div class="branchLogic-branch-content">
+                            <div class="branchLogic-branch-name"><span>Branch 3</span></div>
+                             <span class="branching-and-logic-branchID">Page branch ID: 280</span>
+                        </div>
+                    </div>
+                  </p:panel>
+              </div>          
+
+</p:panel>

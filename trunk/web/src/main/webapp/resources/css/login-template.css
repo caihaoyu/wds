@@ -1,0 +1,120 @@
+#login-panel{
+	float:left;
+	margin:10px auto 0 344px;
+	width:315px;
+	color:#00C;
+}
+#login-username-text-prompt{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#404040;
+}
+#input-message-panel {
+	margin-top:10px;
+	float:left;
+	width:250px;
+}
+#username-input-message-panel {
+	margin-top:25px;
+	margin-left:10px;
+	display:block;
+	width:250px;
+	height: 35px;
+	float:left;
+	overflow:hidden;
+}
+#password-input-message-panel {
+	margin-top:45px;
+	margin-left:10px;
+	width:250px;
+	height:35px;
+	float:left;
+	display:block;
+	overflow:hidden;
+}
+.login-text-username{
+	float:left;
+	width:295px;
+	height:20px;
+	background-image:url(../images/login-frame.png);
+	background-repeat:no-repeat;
+	background-color:transparent;
+	margin-top:5px;
+	border:0;
+	padding:10px;
+	font-size:18px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+    color:#f28705;
+}
+.login-text-username:active,.login-text-username:focus{
+	background-image:url(../images/login-frame-hover.png);
+	background-repeat:no-repeat;
+}
+#login-password-text-prompt{
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#404040;
+	margin-top:20px;
+}	
+.login-text-password{
+	float:left;
+	width:295px;
+	height:20px;
+	background-image:url(../images/login-frame.png);
+	background-repeat:no-repeat;
+	background-color:transparent;
+	margin-top:5px;
+	border:0;
+	padding:10px;
+	font-size:18px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+    color:#f28705;
+}
+.login-text-password:active,.login-text-password:focus{
+	background-image:url(../images/login-frame-hover.png);
+	background-repeat:no-repeat;
+}
+#remember-me-checkbox{
+	margin-left:5px;
+	margin-top:25px;
+	margin-right:5px;
+	display:block;
+	float:left;
+}
+#remember-me-panel{
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#404040;
+}
+#remember-me-text{
+	float:left;
+	display:block;
+	padding-top:27px;
+}
+.login-button-panel{
+    display: block;
+    float: left;
+    margin-left: 106px;
+    margin-top:  22px;
+}
+#register-panel{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#404040;
+	margin-left:5px;
+	margin-top:25px;
+	padding-bottom:20px;
+}
+#register-panel a:hover{
+	color:#f28705;
+}
+#register-panel a{
+	color:#DB5B06;
+}
+.divider {
+	color:#646464;
+	margin-left:10px;
+	margin-right:10px;
+}

@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+	<h:head>
+
+	</h:head>
+	
+	<h:body>
+            <h:form prependId="false">
+                <p:inplace id="ajaxInplace" editor="true">
+                    <p:ajax event="save" listener="#{addQuestionView.handleSave}" />
+                    <p:inputText value="#{addQuestionView.testEditing}" required="true" label="text"/>
+                </p:inplace>
+            </h:form>		
+	</h:body>
+</html>

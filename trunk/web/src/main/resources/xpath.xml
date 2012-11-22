@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <survey>
+        <rows>3</rows>
+        <columns>5</columns> 
+    </survey>
+    <questionbank>
+        <rows>3</rows>
+        <columns>5</columns>
+        <delete>1,2,5</delete> 
+        <question>
+            <linkKey>addQBtn</linkKey>
+        </question>
+    </questionbank>
+</root>

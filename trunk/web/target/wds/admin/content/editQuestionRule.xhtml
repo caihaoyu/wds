@@ -1,0 +1,56 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" class="content-frame-wrapper" >
+    <div id="paging-and-branching-content-panel">
+        <div class="administration-maintitle-panel">
+            <p:breadCrumb>
+                <p:menuitem id="dashboardMenu" value="Dash Board" action="dashboard" />
+                <p:menuitem id="editSurveyMenu" value="#{editSurveySession.selectedSurvey.surveytitle}" action="editSurvey" />
+                <p:menuitem id="branchingMenu" value="Branching and Logic" action="branching" />
+                <p:menuitem id="editQRuleMenu" value="Edit Question Rule" action="branching" />
+            </p:breadCrumb>
+        </div>
+        <div class="admin-page-title-panel">#{editSurveySession.selectedQuestion.questiontitle}</div>
+        <div class="admin-subtitle-panel">
+            <div class="questRule-subtitle">This Question has the following question rules: </div>
+            <div class="admin-subtitle-btn">
+                <p:commandLink id="creatNewRuleBtn" action="newRule" styleClass="commandlinkslim">
+                    <span class="ui-icon ui-icon-slim-add"></span>
+                    <span class="label">Create New Rule</span>
+                </p:commandLink>
+                <p:commandLink id="backToBranchingBtn" action="branching" styleClass="commandlinkslim">
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Back to Branching</span>
+                </p:commandLink>
+            </div>
+        </div>
+        <br class="clearfloat"/>
+        <div class="newrule-and-editrule-panel">
+            <p:dataGrid id="ruleGrid" value="#{editSurveySession.selectedQuestion.rules}" binding="#{editQuestionRuleView.ruleGrid}" columns="1" var="rule">
+                <p:column>
+                    <p:panel>
+                            <span class="ruleid">#{rule.ruleid}. </span><span class="ruletype">[#{rule.ruletypeByName}]</span>
+                            <h:outputText styleClass="rulename" value="#{rule.rulename}">
+                                <f:converter converterId="stringLengthConverter"/>
+                                <f:attribute name="length" value="70" />
+                            </h:outputText>
+                            <div class="buttons">
+                                <p:commandLink id="deleteQRuleBtn" actionListener="#{editQuestionRuleView.deleteQuestionRule}" update=":form:popups" styleClass="commandlinkslim">
+                                    <span class="ui-icon ui-icon-delete"></span>
+                                    <span class="label">Delete</span>
+                                </p:commandLink>
+                                <p:commandLink id="editQRuleBtn" actionListener="#{editQuestionRuleView.editQuestionRule}" styleClass="commandlinkslim">
+                                    <span class="ui-icon ui-icon-edit"></span>
+                                    <span class="label">Edit</span>
+                                </p:commandLink>
+                            </div>
+                        <br class="clearfloat"/>
+                    </p:panel>
+                </p:column>
+            </p:dataGrid>
+        </div>
+    </div>
+</div>

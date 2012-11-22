@@ -1,0 +1,162 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <p:messages id="messages" showDetail="true" autoUpdate="true">
+        <p:effect type="blind" event="load">
+            <f:param name="direction" value="'vertical'" />
+            <f:param name="mode" value="'show'" />
+        </p:effect>
+    </p:messages>
+    <!-- new rule content start-->
+    <div id="paging-and-branching-content-panel">
+        <div class="administration-maintitle-panel">
+            <p:breadCrumb>
+                <p:menuitem id="dashboardMenu" value="Dash Board" action="dashboard" />
+                <p:menuitem id="editSurveyMenu" value="#{editSurveySession.selectedSurvey.surveytitle}" action="editSurvey" />
+                <p:menuitem id="branchingMenu" value="Branching and Logic" action="branching" />
+                <p:menuitem id="creatNewQRuleMenu" value="Create New Question Rule" action="branching" />
+            </p:breadCrumb>
+        </div>
+        <div class="admin-page-title-panel">New Question Rule</div>
+        <div class="admin-subtitle-panel">
+            <div class="questRule-subtitle">
+                <h:outputText value="#{addQuestionRuleView.questionTitle}">
+                    <f:converter converterId="stringLengthConverter"/>
+                    <f:attribute name="length" value="65" />
+                </h:outputText> 
+            </div>
+            <div class="admin-subtitle-btn">
+                <p:commandLink id="backToBranchingBtn" styleClass="commandlinkslim" action="#{addQuestionRuleView.processBackButton}" >
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Go Back to Branching</span>
+                </p:commandLink>
+            </div>
+        </div>
+        <br class="clearfloat"/>
+        <div class="newrule-and-editrule-panel">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="branchLogic-pages-rules-panel-left-frame">                  
+                            <span class="title">If the user...</span>
+                            <p:selectOneRadio id="SlctSkips" value="#{addQuestionRuleView.condition.skips}" 
+                                                styleClass="selectSkip" layout="pageDirection" >
+                                <f:selectItem itemLabel="Answers this question" itemValue="#{false}" />
+                                <f:selectItem itemLabel="Skips this question" itemValue="#{true}" />
+                            </p:selectOneRadio>
+                        </td>
+                        <td class="branchLogic-pages-rules-panel-right-frame">
+                        <span class="title">...then...</span>
+                        <p:outputPanel id="selectionPanel">
+                            <p:selectOneMenu id="SlctAction" value="#{addQuestionRuleView.branchItemRule.ruletype}" rendered="#{addQuestionRuleView.branchItemRule.ruletype eq null}">
+                                <p:ajax listener="#{addQuestionRuleView.actionSelectionValueChange}" update="selectionPanel,buttons-panel" />
+                                <f:selectItem itemLabel=" --- Select The Action You Want to Perform --- " itemValue="" itemDisabled="false" />
+                                <f:selectItem itemLabel="Show hidden question" itemValue="1" />
+                                <f:selectItem itemLabel="Change default branch of page(temporarily)" itemValue="2" />
+                                <f:selectItem itemLabel="Jump to page right after(skips the rest of page)" itemValue="3" />
+                                <f:selectItem itemLabel="Jump to page after this page" itemValue="4" />
+                            </p:selectOneMenu>
+<!--                        START SHOW HIDDEN QUESTION-->
+                            <p:outputPanel rendered="#{addQuestionRuleView.branchItemRule.ruletype eq 1}">
+                                <span class="showHiddenPrompt">Show Hidden Question of : </span>
+                                <p:selectOneMenu id="showHiddenQBtn" styleClass="slctPage" value="#{editSurveySession.selectedPageId}">
+                                    <p:ajax listener="#{addQuestionRuleView.pageSelectionValueChange}" update="selectionPanel,buttons-panel" />
+                                    <f:selectItem itemLabel=" -- Select Page --- " itemValue="" itemDisabled="true" />
+                                    <f:selectItems value="#{addQuestionRuleView.pageItems}" />
+                                </p:selectOneMenu>
+                                <p:selectOneMenu id="pageBranchIdSelect" styleClass="slctBranch" 
+                                                 value="#{editSurveySession.selectedPageBranchId}" 
+                                                 rendered="#{!(editSurveySession.selectedPageId eq null) and addQuestionRuleView.pageBranchItems.size()>0}">
+                                    <p:ajax listener="#{addQuestionRuleView.pageBranchSelectionValueChange}" update="selectionPanel,buttons-panel" />
+                                    <f:selectItem itemLabel=" -- Select Branch --- " itemValue="" itemDisabled="true" />
+                                    <f:selectItems value="#{addQuestionRuleView.pageBranchItems}" />
+                                </p:selectOneMenu>
+                                <p:outputPanel id="selectHiddenQ" rendered="#{addQuestionRuleView.hiddenItems.size()>0}">
+                                    <span class="tableShowHiddenPrompt">Select hidden question to show from the table below:</span>
+                                    <p:dataTable id="tblHiddenQuestions" 
+                                                value="#{addQuestionRuleView.hiddenItems}" 
+                                                var="item" 
+                                                binding="#{addQuestionRuleView.hiddenItemTable}" 
+                                                styleClass="hiddenQuestionTbl" rowKey="#{item.branchitemid}" 
+                                                selection="#{addQuestionRuleView.selectedItems}">
+                                        <p:ajax event="" update=":form:buttons-panel" />
+                                        <p:ajax event="rowUnselect" update=":form:buttons-panel" />
+                                        <p:column selectionMode="multiple" style="width:18px;"/>
+                                        <p:column headerText="Question title">
+                                            <h:outputText styleClass="question-title" value="#{item.question.questiontitle}">
+                                                <f:converter converterId="stringLengthConverter"/>
+                                                <f:attribute name="length" value="75" />
+                                            </h:outputText>
+                                            <h:outputText styleClass="question-type" value="ID:#{item.question.questionid} [#{item.question.questionTypeByName}]"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:outputPanel>
+                                <p:outputPanel rendered="#{!(addQuestionRuleView.hiddenItems eq null) and !(addQuestionRuleView.hiddenItems.size()>0)}">
+                                    <br class="clearfloat" />
+                                    <span class="noQuestionsPrompt">There are no hidden questions under this branch.</span>
+                                </p:outputPanel>
+                            </p:outputPanel>
+<!--                        START CHANGE DEFAULT BRANCH OF PAGE-->
+                            <p:outputPanel rendered="#{addQuestionRuleView.branchItemRule.ruletype eq 2}">
+                                <span class="showHiddenPrompt">Set Default Branch of Page at runtime: </span>
+                                <p:selectOneMenu id="setDefaultBranchBtn" styleClass="slctPage" 
+                                                 value="#{editSurveySession.selectedPageId}">
+                                    <p:ajax listener="#{addQuestionRuleView.pageSelectionValueChange}" update="selectionPanel,buttons-panel" />
+                                    <f:selectItem itemLabel=" -- Select Page --- " itemValue="" itemDisabled="true" />
+                                    <f:selectItems value="#{addQuestionRuleView.pageItems}" />
+                                </p:selectOneMenu>
+                                <p:selectOneMenu id="defaultBranchIdSelect" styleClass="slctBranch" 
+                                                 value="#{editSurveySession.selectedPageBranchId}" 
+                                                 rendered="#{!(editSurveySession.selectedPageId eq null) and addQuestionRuleView.pageBranchItems.size()>0}">
+                                    <p:ajax listener="#{addQuestionRuleView.pageBranchSelectionValueChange}" update="selectionPanel,buttons-panel" />
+                                    <f:selectItem itemLabel=" -- Select Branch --- " itemValue="" itemDisabled="true" />
+                                    <f:selectItems value="#{addQuestionRuleView.pageBranchItems}" />
+                                </p:selectOneMenu>
+                            </p:outputPanel>
+<!--                        JUMP TO PAGE RIGHT AFTER-->
+                            <p:outputPanel rendered="#{addQuestionRuleView.branchItemRule.ruletype eq 3}">
+                                <span class="showHiddenPrompt">Jump to page after this question: </span>
+                                <p:selectOneMenu id="jumpToPageAfterQ" styleClass="slctPage" 
+                                                value="#{editSurveySession.selectedPageId}">
+                                    <p:ajax listener="#{addQuestionRuleView.pageSelectionValueChange}" update="selectionPanel,buttons-panel" />
+                                    <f:selectItem itemLabel=" -- Select Page --- " itemValue="" itemDisabled="true" />
+                                    <f:selectItems value="#{addQuestionRuleView.pageItems}" />
+                                </p:selectOneMenu>
+                            </p:outputPanel>
+<!--                        JUMP TO PAGE AFTER PAGE-->
+                            <p:outputPanel rendered="#{addQuestionRuleView.branchItemRule.ruletype eq 4}">
+                                    <span class="showHiddenPrompt">Jump to page after page: </span>
+                                    <p:selectOneMenu id="jumpToPageAfterPage" styleClass="slctPage" 
+                                                    value="#{editSurveySession.selectedPageId}">
+                                        <p:ajax listener="#{addQuestionRuleView.pageSelectionValueChange}" update="selectionPanel,buttons-panel" />
+                                        <f:selectItem itemLabel=" -- Select Page --- " itemValue="" itemDisabled="true" />
+                                        <f:selectItems value="#{addQuestionRuleView.pageItems}" />
+                                    </p:selectOneMenu>
+                            </p:outputPanel>
+                        </p:outputPanel>
+                        </td>
+                    </tr>
+            </table>
+        </div>  
+        <div style="clear: both" class="commandlink_container">
+            <p:outputPanel id="buttons-panel">
+                <p:commandLink id="saveQRuleBtn" rendered="#{addQuestionRuleView.renderSaveButton()}" action="#{addQuestionRuleView.saveQuestionRule}" styleClass="commandlink">
+                    <span class="ui-icon ui-icon-save"></span>
+                    <span class="label">Save Question Rule</span>
+                </p:commandLink>
+                <p:commandLink id="changeActionBtn" update="selectionPanel,buttons-panel" rendered="#{addQuestionRuleView.branchItemRule.ruletype != null}" action="#{addQuestionRuleView.resetRuleType}" styleClass="commandlink">
+                    <span class="ui-icon ui-icon-change-action"></span>
+                    <span class="label">Change Action</span>
+                </p:commandLink>
+                <p:commandLink id="backtoBranchingBtn" action="branching" styleClass="commandlink">
+                    <span class="ui-icon ui-icon-back"></span>
+                    <span class="label">Back</span>
+                </p:commandLink>
+            </p:outputPanel>
+        </div>
+        <br class="clearfloat"/>
+    </div>
+    <br class="clearfloat"/>
+</div>

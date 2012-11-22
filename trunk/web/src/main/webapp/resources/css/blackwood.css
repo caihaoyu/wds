@@ -1,0 +1,1481 @@
+/* 
+    Document   : blackwood
+    Created on : 31/01/2011, 3:53:57 PM
+    Author     : sam
+    Description:
+        ICEfaces component style re-write.
+        Viona写的，re-write默认ICEFaces组件 风格
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/* ICE Indicator */
+.iceOutConStat {
+
+}
+.iceOutConStatActv {
+   /* Active div style */
+   height:18px;
+   background-color:#bfe7dd;
+   font-family:Verdana, Geneva, sans-serif;
+   font-size:14px;
+   color:#17bf9a;
+   padding:3px 8px 3px 8px;
+   text-align: center;
+   display: block;
+}
+
+.iceOutConStatCaution {
+    /* Caution div style */
+    margin-top: -24px;
+    height:18px;
+    background-color:#f9eba5;
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:14px;
+    color:#f28705;
+    padding:3px 8px 3px 8px;
+    display: block;
+}
+
+.iceOutConStatDisconnect {
+    /* Discounnected div style */
+    margin-top: -24px;
+    height:18px;
+    background-color:#fcc49e;
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:14px;
+    color:#990000;
+    padding:3px 8px 3px 8px;
+    display: block;
+    text-align: center;
+}
+
+.iceOutConStatInactv {
+    /* Inactive div style */
+
+}
+/* calender style from rime */
+/*
+----------- Calendar Component classes
+*/
+.iceSelInpDate {
+/* calendar outline & background color */
+    background-color: #FFFFFF;
+    border-top: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    /*margin-top: 10px;*/
+}
+table.iceSelInpDate tbody tr td table{
+    border-right: 1px solid #d9d9d9;
+}
+
+.iceSelInpDateIFrameFix, .iceIEIFrameFix {
+    z-index: -1;
+    position: absolute;
+    display: block;
+    filter: mask();
+}
+
+.iceIEIFrameFix {
+    height: 0;
+}
+
+.iceSelInpDatePopup {
+    min-width: 172px;
+}
+
+.iceSelInpDateInput {
+    width: 150px;
+    margin: 2px;
+}
+.iceSelInpDateInput:hover {
+    background-color:#f1f1f1;
+}
+
+.iceSelInpDateOpenPopup, .iceSelInpDateOpenPopup-dis {
+    display: inline;
+    text-decoration: none;
+    background-color: transparent;
+    background-image: url( "./css-images/cal_button.gif" );
+    background-repeat: no-repeat;
+    text-align: center;
+    border: none;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.iceSelInpDateClosePopup {
+    display: inline;
+    text-decoration: none;
+    background-color: transparent;
+    background-image: url( "./css-images/cal_off.gif" );
+    background-repeat: no-repeat;
+    text-align: center;
+    border: none;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.iceSelInpDateMonthYear, .iceSelInpDateTime{
+    background: #F5F5F5;
+    font-weight: bold;
+    text-align: center;
+    color: #666;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+}
+
+.iceSelInpDateTime{
+    border-left: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+}
+
+.iceSelInpDateMoYrDropdown, .iceSelInpDateTimeDropDown {
+    background: #F5F5F5;
+    font-weight: bold;
+    color: #666;
+}
+
+.iceSelInpDateMonthYear img {
+    border: none;
+    margin-left: 3px;
+    padding: 3px;
+}
+
+.iceSelInpDateMovePrev {
+    text-decoration: none;
+    display: inline;
+    background-color: transparent;
+    background-image: url( "./css-images/cal_arrow_left.gif" );
+    background-repeat: no-repeat;
+    text-align: center;
+    border: none;
+    width: 17px;
+    height: 16px;
+}
+
+.iceSelInpDateMoveNext {
+    text-decoration: none;
+    display: inline;
+    background-color: transparent;
+    background-image: url( "./css-images/cal_arrow_right.gif" );
+    background-repeat: no-repeat;
+    text-align: center;
+    border: none;
+    width: 17px;
+    height: 16px;
+}
+
+.iceSelInpDateWeek, .iceSelInpDateWeekNumHdr {
+/* the days of the week row */
+    font-weight: normal;
+    color: #666;
+    text-align: center;
+    padding: 3px;
+    border-top: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    /*width: 22px;*/
+}
+
+/* set the look for the days of the week backgrounds */
+
+.iceSelInpDateDay, .iceSelInpDateWeekNum {
+    text-align: center;
+    border-right: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 3px;
+}
+
+.iceSelInpDateWeekNum, .iceSelInpDateWeekNum-dis {
+    background-color: #F5F5F5;
+}
+
+.iceSelInpDateCur {
+    background: #faa620;
+    text-align: center;
+    border-right: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.iceSelInpDateCur .iceCmdLnk {
+    background: none;
+    border: none;
+}
+
+.iceSelInpDateCur .iceOutTxt {
+    color: #FFFFFF;
+}
+
+.weekend {
+    background: #e9e9e9;
+}
+
+.weekend .iceOutTxt {
+    color: #666;
+}
+
+.weekend .iceCmdLnk {
+    background: none;
+    border: none;
+}
+
+/* now set the attributes for the numbers for each day of the week */
+
+.iceSelInpDateDay a {
+/* the day text */
+    text-decoration: none;
+    background-color: #FFFFFF;
+    /*border: 1px solid #FFFFFF;*/
+    color: #000000;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    display: block;
+}
+.iceSelInpDateDay .iceOutTxt {
+    color: #000000;
+}
+
+.iceSelInpDateCur a {
+    text-decoration: none;
+    background-color: #2A6CC2;
+    border: 1px solid #2A6CC2;
+    color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    display: block;
+}
+
+/* now set the color attributes for the hover effect on non-current days */
+.iceSelInpDateDay a:hover {
+/* the day text */
+    text-decoration: none;
+    color: #666;
+}
+
+.iceSelInpDateInput {
+    width:180px;
+    border-color:#a6a397;
+    border-top:1px solid #a6a397;
+    border-left:1px solid #a6a397;
+    border-width:1px;
+    padding:5px 10px;
+    font-size:12px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#404040;
+}
+/* ICE INPUT */
+.iceInpTxt {
+    width:180px;
+    line-height: 16px;
+    border-color:#a6a397;
+    border-top:1px solid #a6a397;
+    border-left:1px solid #a6a397;
+    border-width:1px;
+    padding:5px 10px;
+    font-size:12px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#404040;
+}
+.iceInpTxt:hover {
+    background-color:#f1f1f1;
+}
+/* ICE INPUT TEXTAREA */
+.iceInpTxtArea {
+    width:180px;
+    line-height: 16px;
+    border-color:#a6a397;
+    border-width:1px;
+    padding:5px 10px;
+    font-size:12px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#404040;
+}
+.iceInpTxtArea:hover{ 
+    background-color:#f1f1f1;
+}
+/* ICE MESSAGE ERROR */
+.iceMsgError {
+	color:#db5b06;    
+}
+/*ICE DATA TABLE */
+.iceDatTbl {
+    border: 1px solid #646464;
+}
+.iceDatTbl th {
+    padding: 6px;
+}
+.iceDatTbl td {
+    padding: 6px;
+}
+.iceDatTbl thead tr{
+    background-image:url(../images/edit-survey-table-bg-color.png);
+    font-family:Verdana, Geneva, sans-serif;
+    line-height:16px;
+    font-size:14px;
+    color:#404040;
+    background-repeat:repeat-x;
+}
+.iceDatTblCol {}
+.iceDatTblCol1 {}
+.iceDatTblCol2 {}
+.iceDatTblColHdr1 {}
+.iceDatTblColHdr2 {}
+.iceDatTblRow1 {
+    background-color:#e9e9e9;
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color:#404040;
+    font-size:14px;
+}
+.iceDatTblRow2 {
+    background-color:#eae6d5;
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color:#404040;
+    font-size:14px;
+}
+.iceRowSelMouseOver {
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color:#404040;
+    font-size:14px;
+    background-color:#ddd9c9;
+    cursor: pointer;
+    cursor: hand;
+}
+.iceRowSelSelected {
+	background-color:#f2d64b;
+}
+.iceRowSelSelectedMouseOver{
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color:#404040;
+    font-size:14px;
+	background-color:#f28705;
+    cursor: pointer;
+    cursor: hand;
+}
+.iceDatTblHdr {}
+.iceDatTblFtr {}
+.iceDatTblScrlHdrTbl {}
+.iceDatTblScrlBdyTbl {}
+
+/* ICE DATA TABLE PAGING */
+/*
+----------- Data Scroller Component classes
+*/
+.iceDatPgrScrOut {
+	/* the class for the outside table */
+    background-color: transparent;
+	margin: 10px;
+}
+.iceDatPgrScrBtn {
+	/* the cells behind the scroll buttons */
+    background-color: transparent;
+	padding: 2px;
+}
+.iceDatPgrScrBtn .iceCmdLnk-dis {
+	border-bottom:none;
+}
+.iceDatPgrTbl {
+	/* the container for the pagination*/
+    background-color: transparent;
+}
+/* set the common attributes for the pagination numbers */
+.iceDatPgrScrCol a, .iceDatPgrCol a {
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	text-decoration: none;
+	font-weight: normal;
+	background-color: #e9e9e9;
+	color: #646464;
+	display: block;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border: 1px solid #DBDBDB;
+}
+/** html .iceDatPgrCol a {*/
+    /*width: 1%;*/
+/*}*/
+
+/* override the attributes for the currently selected page */
+.iceDatPgrScrCol a {
+	color: #FFFFFF;
+	border: 1px solid #DBDBDB;
+	background-color: #f28705;
+}
+/** html .iceDatPgrScrCol a {*/
+    /*width: 1%;*/
+/*}*/
+
+/* set the attributes for the mouseover on none-current pages */
+.iceDatPgrCol a:hover {
+	color: #404040;
+	border: 1px solid #F28705;
+	text-decoration: none;
+	padding-bottom: 1px;
+}
+.iceDatPgrScrCol a:hover {
+	color: #000000;
+	border: 1px solid #DBDBDB;
+	text-decoration: none;
+	padding-bottom: 1px;
+}
+/* TABSET 开始 */
+/*
+----------- Tabbed Pane Component classes
+*/
+
+/* tabOn style classes */
+
+.icePnlTbOn {
+    margin-right: 0;
+}
+
+.icePnlTbOn .MidMid td, .icePnlTbOn .MidMid div.ptfd {
+    white-space: nowrap;
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    color: #F28705;
+}
+.icePnlTbOn .MidMid td:hover{
+    text-decoration: underline;
+    color: #F28705;
+}
+
+.icePnlTbOn .LftTop {
+    background: url( './css-images/Tab_LftTop.gif' ) no-repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOn .MidTop {
+    background: url( './css-images/Tab_MidTop.gif' ) repeat-x top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 4px;
+}
+
+.icePnlTbOn .RtTop {
+    background: url( './css-images/Tab_RtTop.gif' ) no-repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOn .LftMid {
+    background: url( './css-images/Tab_LftMid.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOn .MidMid {
+    background: url( './css-images/Tab_MidMid.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.icePnlTbOn .MidMid a, .icePnlTbOn .MidMid div.ptfd {
+    background: url( './css-images/Tab_MidMid_bullet.gif' ) no-repeat top left;
+    border: none;
+    padding: 4px 8px 5px 28px;
+    margin: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+}
+
+.icePnlTbOn .MidMid div.ptfd {
+    padding: 1px 8px 5px 28px;
+}
+
+.icePnlTbOn .RtMid {
+    background: url( './css-images/Tab_RtMid.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOn .LftBtm {
+    background: #f7f7f7;
+
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOn .MidBtm {
+    background: #f7f7f7;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOn .RtBtm {
+    background: #f7f7f7;
+
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+* html .icePnlTbOn .MidMid a,  * html .icePnlTbOn .MidMid div.ptfd{
+    width: 1%;
+}
+
+/* tabOff style classes */
+
+.icePnlTbOff {
+    margin-right: 0;
+}
+
+.icePnlTbOff .MidMid td, .icePnlTbOff .MidMid div.ptfd {
+    text-align: center;
+    white-space: nowrap;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    color: #646464;
+}
+
+.icePnlTbOff .LftTop {
+    background: url( './css-images/Tab_LftTop_off.gif' ) no-repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOff .MidTop {
+    background: url( './css-images/Tab_MidTop_off.gif' ) repeat-x top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 4px;
+}
+
+.icePnlTbOff .RtTop {
+    background: url( './css-images/Tab_RtTop_off.gif' ) no-repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOff .LftMid {
+    background: url( './css-images/Tab_LftMid_off.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOff .MidMid {
+    background: url( './css-images/Tab_MidMid_off.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.icePnlTbOff .MidMid a, .icePnlTbOff .MidMid div.ptfd {
+    background: url( './css-images/Tab_MidMid_bullet_off.gif' ) no-repeat top left;
+    border: none;
+    padding: 4px 8px 5px 28px;
+    margin: 3px;
+    text-decoration: none;
+    color: #404040;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    cursor: pointer;
+    display: block;
+}
+
+.icePnlTbOff .MidMid div.ptfd {
+    padding: 1px 8px 5px 28px;
+}
+
+.icePnlTbOff .MidMid a:hover {
+    
+}
+.icePnlTbOff .MidMid td:hover{
+    
+}
+
+.icePnlTbOff .RtMid {
+    background: url( './css-images/Tab_RtMid_off.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOff .LftBtm {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+.icePnlTbOff .MidBtm {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOff .RtBtm {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+* html .icePnlTbOff .MidMid a,  * html .icePnlTbOff .MidMid div.ptfd{
+    width: 1%;
+}
+
+/* tabOver style classes */
+
+.icePnlTbOver {
+/* was iceTabSetTabOver */
+
+}
+
+.icePnlTbOver .MidMid td, .icePnlTbOver .MidMid div.ptfd{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    text-align: center;
+    white-space: nowrap;
+    color: #404040;
+    text-decoration: underline;
+}
+
+.icePnlTbOver .LftTop {
+    background: url( './css-images/Tab_LftTop_off.gif' ) no-repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOver .MidTop {
+    background: url( './css-images/Tab_MidTop_off.gif' ) repeat-x top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 4px;
+}
+
+.icePnlTbOver .RtTop {
+    background: url( './css-images/Tab_RtTop_off.gif' ) no-repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOver .LftMid {
+    background: url( './css-images/Tab_LftMid_off.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOver .MidMid {
+    background: url( './css-images/Tab_MidMid_off.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.icePnlTbOver .MidMid a, .icePnlTbOver .MidMid div.ptfd {
+    background: url( './css-images/Tab_MidMid_bullet_over.gif' ) no-repeat top left;
+    border: none;
+    padding: 4px 8px 5px 28px;
+    margin: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #666;
+    cursor: pointer;
+    display: block;
+}
+
+.icePnlTbOver .MidMid  div.ptfd {
+    padding: 1px 8px 5px 28px;
+}
+
+.icePnlTbOver .MidMid a:hover {
+    color: #3581A5;
+}
+
+.icePnlTbOver .RtMid {
+    background: url( './css-images/Tab_RtMid_off.gif' ) repeat top left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOver .LftBtm {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+.icePnlTbOver .MidBtm {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOver .RtBtm {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+* html .icePnlTbOver .MidMid a, * html .icePnlTbOver .MidMid div.ptfd  {
+    width: 1%;
+}
+
+/* tabSpacer */
+
+.icePnlTbSetSpcr {
+    width: 100%;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+/* tabPanel */
+.icePnlTbSet {
+/* was iceTabSet*/
+    width: 100%;
+}
+
+.icePnlTbSetCnt {
+/*newly added class*/
+    background: #FFF url( './css-images/contentContainer_bg.gif' ) repeat-x top left;
+    border-bottom: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    padding: 20px;
+}
+
+.icePnlTbSetCntBtm {
+/*was iceTabSetBottom*/
+    background: url( './css-images/contentContainer_bg_up.gif' ) repeat-x top left;
+    border-top: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    padding: 20px;
+}
+
+/* TABS ON BOTTOM STYLE CLASSES */
+/* tabOn style classes */
+
+.icePnlTbOnBtm {
+    margin-right: 0;
+}
+
+.icePnlTbOnBtm .MidMid td, .icePnlTbOnBtm .MidMid div.ptfd {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.icePnlTbOnBtm .LftTop {
+    background: #f7f7f7;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+
+}
+
+.icePnlTbOnBtm .MidTop {
+    background: #f7f7f7;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOnBtm .RtTop {
+    background: #f7f7f7;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOnBtm .LftMid {
+    background: url( './css-images/Tab_Btm_LftMid.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOnBtm .MidMid {
+    background: url( './css-images/Tab_Btm_MidMid.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.icePnlTbOnBtm .MidMid a, .icePnlTbOnBtm .MidMid div.ptfd{
+    background: url( './css-images/Tab_MidMid_bullet.gif' ) no-repeat top left;
+    border: none;
+    padding: 3px 8px 2px 28px;
+    margin: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #666;
+    cursor: pointer;
+    display: block;
+}
+
+.icePnlTbOnBtm .MidMid div.ptfd {
+    padding: 0px 0px 0px 28px;
+}
+
+
+.icePnlTbOnBtm .RtMid {
+    background: url( './css-images/Tab_Btm_RtMid.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOnBtm .LftBtm {
+    background: url( './css-images/Tab_Btm_LftBtm.gif' ) no-repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOnBtm .MidBtm {
+    background: url( './css-images/Tab_Btm_MidBtm.gif' ) repeat-x bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 4px;
+}
+
+.icePnlTbOnBtm .RtBtm {
+    background: url( './css-images/Tab_Btm_RtBtm.gif' ) no-repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+* html .icePnlTbOnBtm .MidMid a, * html .icePnlTbOnBtm .MidMid div.ptfd {
+    width: 1%;
+}
+
+/* tabOff style classes */
+
+.icePnlTbOffBtm {
+    margin-right: 0;
+}
+
+.icePnlTbOffBtm .MidMid td, .icePnlTbOffBtm .MidMid div.ptfd {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.icePnlTbOffBtm .LftTop {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+.icePnlTbOffBtm .MidTop {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOffBtm .RtTop {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+.icePnlTbOffBtm .LftMid {
+    background: url( './css-images/Tab_Btm_LftMid_off.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOffBtm .MidMid {
+    background: url( './css-images/Tab_Btm_MidMid_off.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.icePnlTbOffBtm .MidMid a, .icePnlTbOffBtm .MidMid div.ptfd {
+    background: url( './css-images/Tab_MidMid_bullet_off.gif' ) no-repeat top left;
+    border: none;
+    padding: 3px 8px 2px 28px;
+    margin: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #666;
+    cursor: pointer;
+    display: block;
+}
+
+.icePnlTbOffBtm .MidMid div.ptfd{
+    padding: 0px 0px 0px 28px;
+}
+
+.icePnlTbOffBtm .MidMid a:hover, .icePnlTbOffBtm .MidMid>td:hover {
+    font-weight: bold;
+}
+
+.icePnlTbOffBtm .RtMid {
+    background: url( './css-images/Tab_Btm_RtMid_off.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOffBtm .LftBtm {
+    background: url( './css-images/Tab_Btm_LftBtm_off.gif' ) no-repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOffBtm .MidBtm {
+    background: url( './css-images/Tab_Btm_MidBtm_off.gif' ) repeat-x bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 4px;
+}
+
+.icePnlTbOffBtm .RtBtm {
+    background: url( './css-images/Tab_Btm_RtBtm_off.gif' ) no-repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+* html .icePnlTbOffBtm .MidMid a, * html .icePnlTbOffBtm .MidMid td{
+    width: 1%;
+}
+
+/* tabOver style classes */
+
+.icePnlTbOverBtm {
+/* was iceTabSetTabOverBottom*/
+
+}
+
+.icePnlTbOverBtm .MidMid td, .icePnlTbOverBtm .MidMid div.ptfd {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.icePnlTbOverfBtm .LftTop {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+.icePnlTbOverBtm .MidTop {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 1px;
+}
+
+.icePnlTbOverBtm .RtTop {
+    background: #d9d9d9;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 1px;
+}
+
+.icePnlTbOverBtm .LftMid {
+    background: url( './css-images/Tab_Btm_LftMid_off.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOverBtm .MidMid {
+    background: url( './css-images/Tab_Btm_MidMid_off.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.icePnlTbOverBtm .MidMid a, .icePnlTbOverBtm .MidMid div.ptfd {
+    background: url( './css-images/Tab_MidMid_bullet_over.gif' ) no-repeat top left;
+    border: none;
+    padding: 3px 8px 2px 28px;
+    margin: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #666;
+    cursor: pointer;
+    display: block;
+}
+
+.icePnlTbOverBtm .MidMid div.ptfd {
+    padding: 0px 0px 0px 28px;
+}
+
+.icePnlTbOverBtm .MidMid a:hover, .icePnlTbOverBtm .MidMid td:hover {
+    font-weight: bold;
+}
+
+.icePnlTbOverBtm .RtMid {
+    background: url( './css-images/Tab_Btm_RtMid_off.gif' ) repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+}
+
+.icePnlTbOverBtm .LftBtm {
+    background: url( './css-images/Tab_Btm_LftBtm_off.gif' ) no-repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+.icePnlTbOverBtm .MidBtm {
+    background: url( './css-images/Tab_Btm_MidBtm_off.gif' ) repeat-x bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    height: 4px;
+}
+
+.icePnlTbOverBtm .RtBtm {
+    background: url( './css-images/Tab_Btm_RtBtm_off.gif' ) no-repeat bottom left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 4px;
+    height: 4px;
+}
+
+* html .icePnlTbOverBtm .MidMid a {
+
+}
+
+/* tabSpacer */
+.icePnlTbSetSpcrBtm {
+    width: 100%;
+    border-top: 1px solid #d9d9d9;
+}
+
+/* tabPanel */
+
+.icePnlTbSetBtm {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-right: 1px solid #ABABAB;
+    border-top: 1px solid #ABABAB;
+    border-left: 1px solid #ABABAB;
+    background-color: #FFFFFF;
+}
+
+.icePnlTbOn .MidMid div.ptfd a ,
+.icePnlTbOff .MidMid div.ptfd a ,
+.icePnlTbOver .MidMid div.ptfd a ,
+.icePnlTbOnBtm .MidMid div.ptfd a ,
+.icePnlTbOffBtm .MidMid div.ptfd a ,
+.icePnlTbOverBtm .MidMid div.ptfd a {
+	background-image:none;
+	border:none;
+	margin:0;
+	padding:0;
+}
+/* TABSET 结束 */
+
+/* POPUP WINDOW 开始 */
+/*
+----------- PanelPopup & panelTooltip ----------
+*/
+
+.icePnlPop, .icePnlTlTip {
+        position:absolute;
+        padding: 0px;
+        z-index: 1000;
+        color: #404040;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: rgba(166,163,151,0.3);
+	padding:10px;
+}
+.icePnlPop table{
+	border: 1px solid #f28705;
+	background: #ffffff;
+}
+.icePnlPop table table {
+	background-color:transparent;
+	border:none;
+}
+.icePnlPopHdr, .icePnlTlTipHdr {
+    height: 2.0em;
+    font-weight: bold;
+    background: #FFF url( '../images/popup-window-header-bg.png' ) repeat-x top left;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.icePnlPopHdr .iceOutTxt, .icePnlTlTipHdr .iceOutTxt {
+    padding: 4px;
+    text-align: center;
+    vertical-align: middle;
+    font: 11px tahoma;
+    color: #484848;
+    font-weight: bold;
+}
+.popupClose{
+	text-align:right;
+}
+.popupClose input{
+	padding:10px;
+}
+.icePnlPopFtr, .icePnlTlTipFtr {
+    float: right;
+    height: auto;
+    background-color: #DDDDDD;
+}	
+.popupTopTextDrag, .popupTopTextModal {
+    margin: 2px 0 0 4px;
+    display: inline;
+    float: left;
+}
+.popupTopClose, .popupTopCloseModal {
+    vertical-align: middle;
+    margin: 4px;
+    display: inline;
+    float: right;
+}
+.popupTitle span.iceOutTxt{
+	font-family:"Times New Roman", Times, serif;
+	font-size:16px;
+	color:#646464;
+	padding:10px;
+}
+.popupContentText {
+    display: block;
+}
+#popup-body-content{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	line-height:20px;
+	color:#646464;
+	padding:10px;
+	border-bottom: 1px solid #d9d9d9;
+}
+#popup-body-buttons {
+	background-color:#e9e9e9;
+	text-align:right;
+}
+/* POPUP WINDOW 结束 */
+
+
+/* ------------ Original Menu Classes --
+*/
+.iceMnuBar, .iceMnuBarVrt {
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    background-image: none;
+}
+.iceMnuBarItem, .iceMnuBarVrtItem {
+    float: left;
+    white-space: nowrap;
+}
+
+.iceMnuBarVrtItem {
+    float: none;
+}
+
+.iceMnuBarItem a, .iceMnuBarItem span, .iceMnuBarItem a:hover, .iceMnuBarVrtItem a, .iceMnuBarVrtItem span, .iceMnuBarVrtItem a:hover {
+    display: block;	
+    font-size: 20px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+.iceMnuBarItem a{
+	color:#f28705;
+}
+.iceMnuBarItem a, .iceMnuBarItem span, .iceMnuBarItem a:hover {
+    padding: 3px 6px 3px 6px;
+}
+.iceMnuBarItem a:hover{
+	color:#F2D64B;
+}
+.iceMnuBarVrtItem a, .iceMnuBarVrtItem span, .iceMnuBarVrtItem a:hover {
+    padding: 3px 0 3px 6px;
+}
+
+.iceMnuBarItem a, .iceMnuBarVrtItem a {
+}
+
+.iceMnuBarItem a:hover, .iceMnuBarVrtItem a:hover {
+}
+
+.iceMnuItmSep {
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.iceMnuItmSep hr {
+    width: 100%;
+    /*border: 1px inset #000000;*/
+}
+
+.iceMnuBarSubMenu, .iceMnuBarVrtSubMenu {
+    position: absolute;
+    display: block;
+    z-index: 1000;
+	background-color: #F28705;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+	margin-left:20px;
+	padding-top:5px;
+	padding-bottom:5px;
+	font-size:18px;
+}
+
+.iceMnuItm {
+    padding-right:20px;
+    margin: 0;
+    vertical-align: top;
+}
+
+.iceMnuItm a, .iceMnuItm a:hover, .iceMnuItmVrt a, .iceMnuItmVrt a:hover {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: block;
+    text-decoration: none;
+    text-align: left;
+    vertical-align: top;
+    line-height: 25px;
+    height: 25px;
+    width: 100%;
+}
+
+.iceMnuItm a, .iceMnuItmVrt a {
+    color: #404040;
+}
+
+.iceMnuItm a:hover, .iceMnuItmVrt a:hover {
+    color: #ffffff;
+}
+
+.iceMnuItm a:hover .iceOutTxt, .iceMnuItmVrt a:hover .iceOutTxt {
+    color: #FFFFFF;
+}
+
+.iceMnuItm a:hover .iceOutTxt, .iceMnuItmVrt a:hover .iceOutTxt, .iceMnuItm a:hover .iceMnuItmLabel {
+    color: #FFFFFF;
+}
+
+.iceMnuItmLabel {
+    font-weight: normal;
+}
+
+.iceMnuItmLabel, .iceMnuBarItemLabel {
+    font-size: 1.0em;
+    /*width: 100%;*/
+    vertical-align: top;
+}
+
+.iceDatTbl td span.iceMnuItmLabel {
+    display: inline;
+    padding: 0 0 0 7px;
+}
+
+.iceMnuItmImage, .iceMnuBarItemImage, .iceMnuBarVrtItemImage {
+    display: inline;
+}
+
+.iceMnuItmImage, .iceMnuItmLabel {
+    vertical-align: middle;
+}
+
+.iceMnuBarSubMenuInd {
+    float: right;
+    padding: 5px 0 0 0;
+    margin: 0;
+}
+
+.iceMnuBarVrt {
+    width: 160px;
+    display: block;
+}
+
+.iceMnuBarVrtSubMenuInd {
+    display: inline;
+    float: right;
+    padding-top: 3px;
+    padding-right: 1px;
+}
+
+/*
+----------- PanelPopup ----------
+*/
+
+.iceMnuPopVrtItemLabel {
+    vertical-align: middle;
+    color: #333333;
+}
+
+.iceMnuPopVrtItemImage {
+    width: 19px;
+    vertical-align: middle;
+}
+
+.iceMnuPopVrt {
+/* was iceMenu_vertical */
+    float: left;
+    white-space: nowrap;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    width: 0px;
+    height: 0px;
+}
+
+.iceMnuPopVrtTopSubMenu {
+    padding: 1px;
+    width: 160px;
+    background-color: #FCFCFC;
+    border: 1px solid #999999;
+    position: absolute;
+    font-size: 10px;
+    height: auto;
+    display: block;
+}
+
+.iceMnuPopVrtItem {
+/* was iceMenu_verticalItem */
+    width: 160px;
+    display: block;
+}
+
+.iceMnuPopVrtItem a {
+/* was iceMenu_verticalItem */
+/*    background-color: #DDDDDD;*/
+    height: auto;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: #333333;
+    font-size: 1.1em;
+    margin-bottom: 1px;
+    float: none;
+    display: block;
+    text-decoration: none;
+    border: 0px solid #FFFFFF; /*width: 100%;*/
+}
+
+.iceMnuPopVrtItem a:hover {
+/* was iceMenu_verticalItem */
+    background-color: #4591A1;
+    color: #4591A1;
+    text-decoration: none;
+}
+
+.iceMnuPopVrtItem a:hover .iceMnuPopVrtItemLabel {
+    color: #FFFFFF;
+}
+
+.iceMnuPopVrtSubMenu {
+/* was iceSubMenu_vertical*/
+    padding: 1px;
+    width: 160px;
+    background-color: #EFEFEF;
+    border-top: 1px solid #999999;
+    border-right: 1px solid #999999;
+    border-left: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    position: absolute;
+    height: auto;
+    display: block;
+}
+
+.iceMnuPopVrtSubMenuInd {
+/* was iceSubMenuDividerVert */
+    display: inline;
+    float: right;
+    padding-top: 0px;
+    padding-right: 1px;
+}

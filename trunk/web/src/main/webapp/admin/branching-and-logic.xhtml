@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:loadBundle basename="au.com.satech.wds.messages" var="msgs"/>
+    <ui:composition template="template/adminContentTemplate.xhtml">
+        <ui:define name="customHeader">
+            <title>WDS - Branching and Logic</title>
+        </ui:define>
+        <ui:define name="mainMenu">
+            <ui:include src="admin-menu.xhtml"/>
+        </ui:define>
+        
+        <ui:define name="growl">
+            <ui:include src="growl.xhtml"/>
+        </ui:define>
+
+        <ui:define name="page-content">
+            <ui:include src="content/branching-and-logic.xhtml"/>
+        </ui:define>
+
+        <ui:define name="footer-content">
+            <ui:include src="admin-footer.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>

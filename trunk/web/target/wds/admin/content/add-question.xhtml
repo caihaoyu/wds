@@ -1,0 +1,525 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <!--admin content panel start-->
+    <div class="administration-maintitle-panel">
+        <p:breadCrumb>
+                <p:menuitem id="dashboardMenu" value="Dash Board" action="dashboard" />
+                <p:menuitem id="editQMenu" value="Question Bank" action="editQuestion" />
+                <p:menuitem id="addQMenu" value="Add New Question" action="addQuestion" />
+        </p:breadCrumb>
+    </div>
+    <div class="admin-page-title-panel">
+        <h:outputText value="#{msgs['page.admin.addNewQuestion.title']}" />
+    </div>
+    <hr class="admin-page-title-panel-line" size="1"/>
+    <div class="admin-page-description-txt">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras est magna, pretium sit amet, rhoncus nec, tristique molestie, leo. Aenean tortor sem, luctus at, luctus vel, consequat et, lectus. Proin id velit.</div>
+    <!--add new question content panel start-->  
+    <br class="clearfloat"/>
+    <div class="content-frame-wrapper">
+        <p:tabView activeIndex="#{addQuestionView.focusIndex}" id="newQuestionTabView" styleClass="add-new-question-tabset" dynamic="true" cache="false" >
+            <p:ajax event="tabChange" update=":form:popups,:form:growl" listener="#{addQuestionView.processTabChange}" />
+            <p:tab title="Free Text">
+                <!--freetxt panel starts-->
+                <div id="freetext-left-side"><!--freetxt left side starts-->
+                    <div class="freetxt-body-panel">
+                        <div class="question-titles">Question Body(<span id="notice-star">*</span>):</div>
+                        <div class="edit-question-title">
+                            <h:graphicImage library="images" name="edit-quest-title-icon.png" />
+                            <p:outputPanel id="freetext-title">
+                                <p:inplace id="freetextQTitleInplace" editor="true">
+                                    <p:ajax event="save" listener="#{addQuestionView.processSaveQuestionTitle}" update="rating-title freetext-title choice-title matrix-title :form:popups" />
+                                    <p:inputText id="freetextQTitleInputText" value="#{addQuestionView.newQuestion.questiontitle}" label="text"/>
+                                </p:inplace>
+                            </p:outputPanel>                            
+                        </div>                        
+                        <div class="question-body-input-panel">
+                            <p:outputPanel id="answerDemo">
+                                <p:inputText id="freetextAnswerInputText" rendered="#{addQuestionView.newQuestion.answertype eq 1 and !addQuestionView.renderInputMask}" />
+                                <p:inputMask id="freetextAnswerInputMask" mask="#{addQuestionView.newQuestion.answermask}" 
+                                             rendered="#{addQuestionView.newQuestion.answertype eq 1 and addQuestionView.renderInputMask}" />
+                                <p:inputTextarea id="freetextAnswerInputTextarea" rendered="#{addQuestionView.newQuestion.answertype eq 2}" />
+                                <p:editor id="freetextAnswerEditor" rendered="#{addQuestionView.newQuestion.answertype eq 3}" />
+                            </p:outputPanel>
+                        </div>
+                    </div>
+               </div><!--freetxt left side ends-->
+               <div id="freetext-right-side"><!--freetxt right side starts-->
+                       <div class="question-titles">Question Options:</div>
+                       <div>
+                           <div class="admin-question-opt-txt">Allow Description?</div>
+                           <div class="admin-question-opt-selectone">
+                               <p:selectOneRadio id="freetextAllowDescriptionSelect" value="#{addQuestionView.newQuestion.allowdescription}" layout="lineDirection"
+                                               styleClass="allowDescription add-question-selecOne">
+                                   <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                   <f:selectItem itemLabel="No" itemValue="#{false}" />
+                               </p:selectOneRadio>
+                           </div>
+                            <div class="admin-question-opt-txt">Answer Type:</div>
+                            <div class="admin-question-opt-selectone">
+                                <p:selectOneRadio id="freetextAnswerTypeSelect" value="#{addQuestionView.newQuestion.answertype}">
+                                    <p:ajax listener="#{addQuestionView.answerTypeValueChange}" update="answerDemo,inputMaskOption,:form:previewFreeTextDlg,:form:growl" process="@this" />
+                                    <f:selectItem itemLabel="Input" itemValue="1" />  
+                                    <f:selectItem itemLabel="TextArea" itemValue="2" />  
+                                    <f:selectItem itemLabel="TextArea(Rich)" itemValue="3" />  
+                                </p:selectOneRadio>
+                            </div>
+                            <p:outputPanel id="inputMaskOption">
+                                <p:outputPanel rendered="#{addQuestionView.newQuestion.answertype eq 1}">
+                                    <div class="admin-question-input-mask">
+                                        Enable Input Mask: 
+                                        <p:selectBooleanCheckbox id="freetextInputMaskCheckbox" value="#{addQuestionView.renderInputMask}">
+                                            <p:ajax update="answerDemo maskOption :form:previewFreeTextDlg" process="@this" listener="#{addQuestionView.processRenderInputMaskValueChange}"/>
+                                        </p:selectBooleanCheckbox>
+                                    </div>                                 
+                                    <p:outputPanel id="maskOption">
+                                        <p:outputPanel rendered="#{addQuestionView.renderInputMask}">
+                                            <div class="admin-question-select-mask">Select Mask:</div>
+                                            <div class="admin-question-opt-selectone">
+                                                <p:selectOneMenu id="freetextAnswerMaskSelect" value="#{addQuestionView.newQuestion.answermask}">
+                                                    <p:ajax update="answerDemo :form:previewFreeTextDlg" listener="#{addQuestionView.answerMaskValueChange}" />
+                                                    <f:selectItem itemLabel="Mask to apply" itemDisabled="true" />
+                                                    <f:selectItem itemLabel="Date: 99/99/9999" itemValue="99/99/9999" />
+                                                    <f:selectItem itemLabel="Phone: (99) 9999-9999" itemValue="(99) 9999-9999" />
+                                                </p:selectOneMenu>
+                                            </div>                                            
+                                        </p:outputPanel>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                       </div>
+               </div><!--freetxt right side ends-->
+               <br class="clearfloat"/>
+            <!--freetxt panel ends--> 
+            </p:tab>
+            <!--Rating panel starts-->
+            <p:tab id="ratingTab" title="Rating">
+                    <div class="rating-left-side">
+                        <div class="rating-body-panel">
+                            <div class="question-titles">Question Body(<span id="notice-star">*</span>):</div>
+                            <div class="edit-question-title">
+                                <h:graphicImage library="images" name="edit-quest-title-icon.png" />
+                                <p:outputPanel id="rating-title">
+                                    <p:inplace id="ratingTitleInplace" editor="true">
+                                        <p:ajax event="save" listener="#{addQuestionView.processSaveQuestionTitle}" update="rating-title,freetext-title,choice-title,matrix-title,:form:popups" />
+                                        <p:inputText id="ratingTitleInputText" value="#{addQuestionView.newQuestion.questiontitle}" label="text"/>
+                                    </p:inplace>
+                                </p:outputPanel>
+                            </div>
+                            <div class="rating-stars-panel">
+                                    <p:outputPanel id="rating">
+                                        <p:rating id="ratingStars" stars="#{addQuestionView.newQuestion.rating}" /> 
+                                    </p:outputPanel>
+                            </div>
+                            <br class="clearfloat" />
+                        </div>
+                    </div>
+                    <div class="rating-right-side">
+                        <div class="question-titles">Question Options:</div>
+                        <div class="admin-question-opt-txt">Allow Description?</div>
+                           <div class="admin-question-opt-selectone">
+                               <p:selectOneRadio id="ratingAllowDescriptionSelect" value="#{addQuestionView.newQuestion.allowdescription}" layout="lineDirection"
+                                               styleClass="allowDescription add-question-selecOne">
+                                 <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                 <f:selectItem itemLabel="No" itemValue="#{false}" />
+                               </p:selectOneRadio>
+                           </div>
+                        <div class="admin-question-select-rating">
+                                Select Rating: <p:selectOneMenu id="ratingSelectMenu" value="#{addQuestionView.newQuestion.rating}">
+                                    <p:ajax update="rating,:form:previewRatingDlg" listener="#{addQuestionView.ratingChange}" />
+                                    <f:selectItem itemLabel="2 Stars" itemValue="2.0" />
+                                    <f:selectItem itemLabel="3 Stars" itemValue="3.0" />
+                                    <f:selectItem itemLabel="4 Stars" itemValue="4.0" />
+                                    <f:selectItem itemLabel="5 Stars" itemValue="5.0" />
+                                    <f:selectItem itemLabel="6 Stars" itemValue="6.0" />
+                                    <f:selectItem itemLabel="7 Stars" itemValue="7.0" />
+                                    <f:selectItem itemLabel="8 Stars" itemValue="8.0" />
+                                    <f:selectItem itemLabel="9 Stars" itemValue="9.0" />
+                                    <f:selectItem itemLabel="10 Stars" itemValue="10.0" />
+                                </p:selectOneMenu>
+                        </div>
+                        <br class="clearfloat" />
+                    </div>
+                <br class="clearfloat" />
+            </p:tab>
+<!-- Rating panel ends-->
+            <p:tab id="choiceTab" title="Choice">
+            <!-- multiple choices panel starts-->
+                 <div id="multiple-left-side"><!--multiple left side starts-->
+                     <div class="multiple-body-panel">
+                         <div class="question-titles">
+                             Question Body(<span id="notice-star">*</span>):
+                         </div>   
+                         <div class="edit-question-title">
+                             <h:graphicImage library="images" name="edit-quest-title-icon.png" />
+                             <p:outputPanel id="choice-title">
+                                <p:inplace id="choiceTitleInplace" editor="true">
+                                    <p:ajax event="save" listener="#{addQuestionView.processSaveQuestionTitle}" update="rating-title,freetext-title,choice-title,matrix-title,:form:popups" />
+                                    <p:inputText id="choiceTitleInputText" value="#{addQuestionView.newQuestion.questiontitle}" label="text"/>
+                                </p:inplace>
+                             </p:outputPanel>
+                         </div>
+                     </div>
+                     <div class="answers-panel">
+                         <div class="question-titles">Answers:</div>
+                         <p:outputPanel id="answersPanel">
+                            <p:dataGrid id="choiceAnswersDataGrid" value="#{addQuestionView.newQuestion.answers}"
+                                        styleClass="multiple-answers-panel" 
+                                        var="answer"
+                                        columns="1"
+                                        binding="#{addQuestionView.answersGrid}"
+                                        rendered="#{addQuestionView.newQuestion.answers.size()>0}">
+                                <p:column>
+                                    <h:inputText id="choiceAnswerOrderInputText" styleClass="optionInput" value="#{answer.answerorder}" readonly="true"/>
+                                    <span class="dot">.</span>
+                                    <p:inputText id="choiceAnswerTitleInputText" immediate="true" styleClass="optionContent" value="#{answer.answertitle}">
+                                        <p:ajax update=":form:previewChoiceDlg" />
+                                    </p:inputText>
+                                    <p:commandButton id="choiceDeleteBtn" styleClass="delete-button" 
+                                                     update=":form:newQuestionTabView:answersPanel,:form:newQuestionTabView:addAnswerButton,:form:newQuestionTabView:answerSelect,:form:previewChoiceDlg"
+                                                     icon="ui-icon-closethick"
+                                                     title="#{msgs['page.admin.addNewQuestion.deleteAnswerButton.alt']}"
+                                                     actionListener="#{addQuestionView.deleteAnswerInput}">
+                                    </p:commandButton>
+                                    <p:commandButton id="choiceMoveUpBtn" styleClass="move-answer-button"
+                                                     update=":form:newQuestionTabView:answersPanel,:form:newQuestionTabView:addAnswerButton,:form:newQuestionTabView:answerSelect,:form:previewChoiceDlg"
+                                                    icon="ui-icon-triangle-1-n"
+                                                    title="#{msgs['page.admin.addNewQuestion.moveUpButton.alt']}"
+                                                    actionListener="#{addQuestionView.moveAnswerUp}" 
+                                                    rendered="#{!(addQuestionView.answersGrid.rowIndex eq 0)}">
+                                    </p:commandButton>
+                                    <p:commandButton id="choiceMoveDownBtn" styleClass="move-answer-button"
+                                                     update=":form:newQuestionTabView:answersPanel,:form:newQuestionTabView:addAnswerButton,:form:newQuestionTabView:answerSelect,:form:previewChoiceDlg"
+                                                     icon="ui-icon-triangle-1-s"
+                                                     title="#{msgs['page.admin.addNewQuestion.moveDownButton.alt']}"
+                                                     actionListener="#{addQuestionView.moveAnswerDown}" 
+                                                     rendered="#{!(addQuestionView.answersGrid.rowIndex+1 eq addQuestionView.newQuestion.answers.size())}">
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataGrid>
+                         </p:outputPanel>
+                         <p:outputPanel styleClass="add-new-answer-button-panel" id="addAnswerButton">
+                            <p:outputPanel rendered="#{addQuestionView.renderAddNewAnswerButtonPanel}">
+                                <p:commandLink id="choiceAddNewAnswerBtn" styleClass="commandlinkslim" update="answersPanel,addAnswerButton,:form:previewChoiceDlg" actionListener="#{addQuestionView.addNewAnswerInput}">
+                                    <span class="ui-icon ui-icon-slim-add"></span>
+                                    <span class="label">#{msgs['page.admin.addNewQuestion.addNewAnswerButton']}</span>
+                                </p:commandLink>
+                            </p:outputPanel>
+                             <p:outputPanel rendered="#{addQuestionView.newQuestion.answers.size()>0}">
+                                 <div class="notes" ><span class="in-red"> * </span>Empty answer(s) will be discarded automatically.</div>
+                             </p:outputPanel>
+                         </p:outputPanel>
+                         <p:outputPanel id="answerSelect">
+                            <p:outputPanel styleClass="answer-prompt-panel" rendered="#{!(addQuestionView.newQuestion.answers.size()>0)}">
+                                This question doesn't contain any answers.<br/>How many answers do you want?
+                                <p:selectOneMenu id="choiceAnswerPromptSelect" value="#{addQuestionView.numberOfAnswersSelected}" immediate="true" styleClass="answers-to-display-selectone">
+                                    <f:selectItems value="#{addQuestionView.numberOfAnswers}"/>
+                                </p:selectOneMenu>
+                                <div class="answers-display-btn">
+                                    <p:commandLink id="choiceAnswerDisplayBtn" styleClass="commandlinkslim" update="answersPanel,addAnswerButton,answerSelect,:form:popups" actionListener="#{addQuestionView.processAnswersToDisplay}">
+                                        <span class="ui-icon ui-icon-display"></span>
+                                        <span class="label">#{msgs['page.admin.addNewQuestion.confirmSelectedAnswersButton']}</span>
+                                    </p:commandLink>
+                                </div>
+                            </p:outputPanel>
+                         </p:outputPanel>
+                     </div>
+                 </div><!--multiple left side ends-->
+                 <div id="multiple-right-side"><!--multiple right side starts-->
+                     <div class="question-titles">Question Options:</div>
+                     <div class="question-options-select-panel">
+                         <div class="admin-question-opt-txt">Allow Description?</div>
+                         <div class="admin-question-opt-selectone">
+                             <p:selectOneRadio id="choiceAllowDescriptionSelect" value="#{addQuestionView.newQuestion.allowdescription}" layout="lineDirection"
+                                               styleClass="allowDescription add-question-selecOne">
+                                 <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                 <f:selectItem itemLabel="No" itemValue="#{false}" />
+                             </p:selectOneRadio>
+                         </div>
+                         <div class="admin-question-opt-txt">Allow Multiple Answers?</div>
+                         <div class="admin-question-opt-selectone">
+                             <p:selectOneRadio id="choiceAllowMultipleSelect" value="#{addQuestionView.newQuestion.allowmultipile}"
+                                               layout="lineDirection" styleClass="allowMultipile add-question-selecOne">
+                                 <p:ajax update=":form:previewChoiceDlg" />
+                                 <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                 <f:selectItem itemLabel="No" itemValue="#{false}" />
+                             </p:selectOneRadio>
+                         </div>
+                         <div class="admin-question-opt-txt">Allow Customized Answers?</div>
+                         <div class="admin-question-opt-selectone">
+                             <p:selectOneRadio id="choiceAllowCustomizedSelect" value="#{addQuestionView.newQuestion.allowcustomized}" 
+                                               layout="lineDirection" 
+                                               styleClass="allowMultipile add-question-selecOne">
+                                    <p:ajax update=":form:previewChoiceDlg" />
+                                    <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                    <f:selectItem itemLabel="No" itemValue="#{false}" />
+                             </p:selectOneRadio>
+                         </div>
+                     </div>
+                 </div><!--multiple right side ends-->
+                 <br class="clearfloat"/>
+            </p:tab>
+            <p:tab id="matrixTab" title="Matrix">
+                <!--matrix panel starts-->
+                <!-- matrix panel top part starts-->
+                <div class="matrix-body-panel">
+                        <div class="question-titles">
+                            Question Body(<span id="notice-star">*</span>):
+                        </div>
+                        <div class="edit-question-title">
+                            <h:graphicImage library="images" name="edit-quest-title-icon.png" />
+                            <p:outputPanel id="matrix-title">
+                                <p:inplace id="matrixQTitleInplace" editor="true">
+                                    <p:ajax event="save" listener="#{addQuestionView.processSaveQuestionTitle}" update="rating-title freetext-title choice-title matrix-title" />
+                                    <p:inputText id="matrixQTitleInputText" value="#{addQuestionView.newQuestion.questiontitle}" label="text"/>
+                                </p:inplace>
+                            </p:outputPanel>
+                        </div>
+                </div>
+                <div class="matrix-body-panel">
+                        <div class="question-titles">Question Options:</div>
+                        <div class="question-options-panel">
+                            <div class="question-options-unit">
+                                <div class="admin-question-opt-txt">Column Type:</div>
+                                <div class="admin-question-opt-selectone">
+                                <p:selectOneMenu id="matrixColumnTypeSelect" value="#{addQuestionView.newQuestion.columntype}">
+                                    <p:ajax update="columnPanel,mutipleOptions,:form:previewMatrixDlg" listener="#{addQuestionView.columnTypeChange}" />
+                                    <f:selectItems value="#{addQuestionView.columnchoiceTypeItems}" />
+                                </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="question-options-unit">
+                                <div class="admin-question-opt-txt">Allow Description?</div>
+                                <div class="admin-question-opt-selectone">
+                                    <p:selectOneRadio id="matrixAllowDescriptionSelect" value="#{addQuestionView.newQuestion.allowdescription}" 
+                                                    layout="lineDirection" 
+                                                    styleClass="allowDescription add-question-selecOne" >
+                                        <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                        <f:selectItem itemLabel="No" itemValue="#{false}" />
+                                    </p:selectOneRadio>
+                                </div>
+                            </div>
+                            <p:outputPanel id="mutipleOptions">
+                                    <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 3}">
+                                        <div class="question-options-unit">
+                                            <div class="admin-question-opt-txt">Allow Multiple Answers?</div>
+                                            <div class="admin-question-opt-selectone">
+                                                <p:selectOneRadio id="matrixAllowMultipleSelect" value="#{addQuestionView.newQuestion.allowmultipile}"
+                                                                layout="lineDirection" 
+                                                                styleClass="allowMultipile add-question-selecOne">
+                                                    <p:ajax update=":form:previewMatrixDlg" />
+                                                    <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                                    <f:selectItem itemLabel="No" itemValue="#{false}" />
+                                                </p:selectOneRadio>
+                                            </div>
+                                        </div>
+                                        <div class="question-options-unit">
+                                            <div class="admin-question-opt-txt">Allow Customized Answers?</div>
+                                            <div class="admin-question-opt-selectone">
+                                                <p:selectOneRadio id="matrixAllowCustomizedSelect" value="#{addQuestionView.newQuestion.allowcustomized}" 
+                                                                layout="lineDirection" 
+                                                                styleClass="allowMultipile add-question-selecOne">
+                                                    <p:ajax update=":form:previewMatrixDlg" />
+                                                    <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                                                    <f:selectItem itemLabel="No" itemValue="#{false}" />
+                                                </p:selectOneRadio>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                </p:outputPanel> 
+                         <br class="clearfloat"/>
+                         </div> 
+                </div>
+                <!-- matrix panel top part ends-->
+                <!--matrix sub questions panel starts-->
+                <div class="matrix-subquestions-panel">
+                    <div class="subquestions-panel">
+                        <div class="question-titles">Sub Questions:</div>
+                        <p:outputPanel id="subQuestionsPanel">
+                            <p:dataGrid id="matrixSubQDataGrid" value="#{addQuestionView.newQuestion.subquestions}"
+                                        styleClass="sub-questions-panel"
+                                        var="subQuestion" 
+                                        columns="1" 
+                                        binding="#{addQuestionView.subQuestionsGrid}"
+                                        rendered="#{addQuestionView.newQuestion.subquestions.size()>0}">
+                                <p:column>
+                                    <h:inputText id="matrixSubQOrderInputText" styleClass="optionInput" value="#{subQuestion.subquestionorder}" readonly="true"/>
+                                    <span class="dot">.</span>
+                                    <p:inputText id="matrixSubQTitleInputText" styleClass="optionContent" value="#{subQuestion.subquestiontitle}">
+                                        <p:ajax update=":form:previewMatrixDlg" />
+                                    </p:inputText>
+                                    <p:commandButton id="matrixDeletBtn" styleClass="delete-button"
+                                                     update=":form:newQuestionTabView:subQuestionsPanel,:form:newQuestionTabView:addSubQuestionButton,:form:newQuestionTabView:subQuestionSelect,:form:newQuestionTabView:columnPanel,:form:previewMatrixDlg"
+                                                    icon="ui-icon-closethick"
+                                                    title="#{msgs['page.admin.addNewQuestion.deleteAnswerButton.alt']}"
+                                                    actionListener="#{addQuestionView.deleteSubQuestionInput}">
+                                    </p:commandButton>
+                                    <p:commandButton id="matrixMoveUpBtn" styleClass="move-answer-button"
+                                                     update=":form:newQuestionTabView:subQuestionsPanel,:form:newQuestionTabView:addSubQuestionButton,:form:newQuestionTabView:subQuestionSelect,:form:previewMatrixDlg"
+                                                    icon="ui-icon-triangle-1-n"
+                                                    title="#{msgs['page.admin.addNewQuestion.moveUpButton.alt']}"
+                                                    actionListener="#{addQuestionView.moveSubQuestionUp}" 
+                                                    rendered="#{!(addQuestionView.subQuestionsGrid.rowIndex eq 0)}">
+                                    </p:commandButton>
+                                    <p:commandButton id="matrixMoveDownBtn" styleClass="move-answer-button"
+                                                     update=":form:newQuestionTabView:subQuestionsPanel,:form:newQuestionTabView:addSubQuestionButton,:form:newQuestionTabView:subQuestionSelect,:form:previewMatrixDlg"
+                                                    icon="ui-icon-triangle-1-s"
+                                                    title="#{msgs['page.admin.addNewQuestion.moveDownButton.alt']}"
+                                                    actionListener="#{addQuestionView.moveSubQuestionDown}"
+                                                    rendered="#{!(addQuestionView.subQuestionsGrid.rowIndex+1 eq addQuestionView.newQuestion.subquestions.size())}">
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataGrid>
+                        </p:outputPanel>
+                        <p:outputPanel id="addSubQuestionButton">
+                            <p:outputPanel styleClass="add-new-answer-button-panel" rendered="#{addQuestionView.newQuestion.subquestions.size()>0}">
+                                <p:outputPanel rendered="#{addQuestionView.renderAddNewSubQuestionButtonPanel}">
+                                        <p:commandLink id="matrixAddSubQInput" styleClass="commandlinkslim" 
+                                                    update="subQuestionsPanel,addSubQuestionButton,columnPanel,:form:previewMatrixDlg" 
+                                                    actionListener="#{addQuestionView.addSubQuestionInput}">
+                                            <span class="ui-icon ui-icon-slim-add"></span>
+                                            <span class="label">#{msgs['page.admin.addNewQuestion.addNewSubQuestionButton']}</span>
+                                        </p:commandLink>
+                                </p:outputPanel>
+                                    <div class="notes" ><span class="in-red"> * </span>Empty sub question(s) will be discarded automatically.</div>
+                            </p:outputPanel>
+                        </p:outputPanel>
+                        <p:outputPanel id="subQuestionSelect">
+                            <p:outputPanel styleClass="answer-prompt-panel" rendered="#{!(addQuestionView.newQuestion.subquestions.size()>0)}" >
+                                This question doesn't contain any sub question.<br/>How many sub question(s) do you want?
+                                <div class="subquestion-select-panel">
+                                   <p:selectOneMenu id="matrixSubQNoSelect" value="#{addQuestionView.numberOfSubQuestionsSelected}" immediate="true">
+                                        <f:selectItems value="#{addQuestionView.numberOfSubQuestions}" />
+                                   </p:selectOneMenu>
+                                        <p:commandLink id="matrixDisplaySubQ" styleClass="commandlinkslim" 
+                                                    update="subQuestionSelect,addSubQuestionButton,subQuestionsPanel,columnPanel,:form:popups" 
+                                                    actionListener="#{addQuestionView.processSubQuestionsToDisplay}">
+                                            <span class="ui-icon ui-icon-display"></span>
+                                            <span class="label">#{msgs['page.admin.addNewQuestion.confirmSelectedSubQuestionButton']}</span>
+                                        </p:commandLink>
+                                </div>
+                            </p:outputPanel>
+                        </p:outputPanel>
+                    
+                </div>
+                <!--matrix sub questions panel ends-->
+                <!--matrix column choices panel starts-->
+                <div class="subquestions-panel">
+                        <p:outputPanel id="columnPanel">
+                            <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 1}">
+                                <p:outputPanel rendered="#{addQuestionView.newQuestion.subquestions.size() > 0}">
+                                    <div class="emphasize-notes">
+                                        <span>#{addQuestionView.newQuestion.subquestions.size()}</span> input fields displayed accordingly.<br/>
+                                        Click <span>"Preview Question"</span> button to see the actual display.
+                                    </div>
+                                </p:outputPanel>
+                                <p:outputPanel rendered="#{!(addQuestionView.newQuestion.subquestions.size() > 0)}">
+                                    <div class="emphasize-notes">Please define sub question first.</div>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                            <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 2}">
+                                <p:outputPanel rendered="#{addQuestionView.newQuestion.subquestions.size() > 0}">
+                                    <div class="emphasize-notes">
+                                        <span>#{addQuestionView.newQuestion.subquestions.size()}</span> ratings displayed accordingly.<br/>
+                                        Click <span>"Preview Question" </span>button to see the actual display.
+                                    </div>
+                                </p:outputPanel>
+                                <p:outputPanel rendered="#{!(addQuestionView.newQuestion.subquestions.size() > 0)}">
+                                    <div class="emphasize-notes">Please define sub question first.</div>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                            <p:outputPanel rendered="#{addQuestionView.newQuestion.columntype eq 3}">
+                                <div class="question-titles">Column Choices:</div>
+                                <p:outputPanel id="columnChoicePanel">
+                                    <p:dataGrid id="matrixColumnChoicesDataGrid" value="#{addQuestionView.newQuestion.columnchoices}"
+                                                    styleClass="sub-questions-panel"
+                                                    var="columnChoice"
+                                                    columns="1" 
+                                                    binding="#{addQuestionView.columnChoicesGrid}"
+                                                    rendered="#{addQuestionView.newQuestion.columnchoices.size()>0}">
+                                            <p:column>
+                                                <h:inputText id="matrixColumnChoiceOrderInput" styleClass="optionInput" value="#{columnChoice.columnchoiceorder}" readonly="true"/>
+                                                <span class="dot">.</span>
+                                                <p:inputText styleClass="optionContent" value="#{columnChoice.columnchoicetitle}">
+                                                    <p:ajax update=":form:previewMatrixDlg" />
+                                                </p:inputText>
+                                                <p:commandButton id="matrixColumChoiceDeleteBtn" styleClass="delete-button"
+                                                                update=":form:newQuestionTabView:columnChoicePanel,:form:newQuestionTabView:columnChoiceButton,:form:newQuestionTabView:columnChoiceSelect,:form:previewMatrixDlg"
+                                                            icon="ui-icon-closethick"
+                                                            title="#{msgs['page.admin.addNewQuestion.deleteAnswerButton.alt']}"
+                                                            actionListener="#{addQuestionView.deleteColumnChoiceInput}">
+                                                </p:commandButton>
+                                                <p:commandButton id="matrixMoveUpColumnChoicesBtn" styleClass="move-answer-button"
+                                                                update=":form:newQuestionTabView:columnChoicePanel,:form:newQuestionTabView:columnChoiceButton,:form:newQuestionTabView:columnChoiceSelect,:form:previewMatrixDlg"
+                                                                icon="ui-icon-triangle-1-n"
+                                                                title="#{msgs['page.admin.addNewQuestion.moveUpButton.alt']}"
+                                                                actionListener="#{addQuestionView.moveColumnChoiceUp}" 
+                                                                rendered="#{!(addQuestionView.columnChoicesGrid.rowIndex eq 0)}">
+                                                </p:commandButton>
+                                                <p:commandButton id="matrixMoveDownColumnChoicesBtn" styleClass="move-answer-button"
+                                                                update=":form:newQuestionTabView:columnChoicePanel,:form:newQuestionTabView:columnChoiceButton,:form:newQuestionTabView:columnChoiceSelect,:form:previewMatrixDlg"
+                                                                icon="ui-icon-triangle-1-s"
+                                                                title="#{msgs['page.admin.addNewQuestion.moveDownButton.alt']}"
+                                                                actionListener="#{addQuestionView.moveColumnChoiceDown}"
+                                                                rendered="#{!(addQuestionView.columnChoicesGrid.rowIndex+1 eq addQuestionView.newQuestion.columnchoices.size())}">
+                                                </p:commandButton>
+                                            </p:column>
+                                        </p:dataGrid>
+                                    </p:outputPanel>
+                                    <p:outputPanel id="columnChoiceButton">
+                                        <p:outputPanel styleClass="column-choice-btn-panel" rendered="#{addQuestionView.newQuestion.columnchoices.size()>0}">
+                                            <p:outputPanel styleClass="column-choice-btn-panel" rendered="#{addQuestionView.renderAddNewColumnChoicesButtonPanel}">
+                                                <p:commandLink id="matrixAddColumnChoiceInput" styleClass="commandlinkslim" update="columnChoicePanel,:form:previewMatrixDlg" actionListener="#{addQuestionView.addColumnChoiceInput}">
+                                                    <span class="ui-icon ui-icon-slim-add"></span>
+                                                    <span class="label">#{msgs['page.admin.addNewQuestion.addNewColumnChoiceButton']}</span>
+                                                </p:commandLink>
+                                            </p:outputPanel>
+                                            <div class="notes" ><span class="in-red"> * </span>Empty column choice(s) will be discarded automatically.</div>
+                                        </p:outputPanel>
+                                    </p:outputPanel>
+                                    <p:outputPanel id="columnChoiceSelect">
+                                        <p:outputPanel styleClass="answer-prompt-panel" rendered="#{!(addQuestionView.newQuestion.columnchoices.size()>0)}" >
+                                            This question doesn't contain any column choice.<br/>How many column choice(s) do you want?
+                                            <div class="subquestion-select-panel">
+                                                <p:selectOneMenu id="matrixSelectColumnChoicesNo" value="#{addQuestionView.numberOfColumnChoicesSelected}" immediate="true">
+                                                    <f:selectItems value="#{addQuestionView.numberOfColumnChoices}" />
+                                                </p:selectOneMenu>
+                                                <p:commandLink id="matrixDisplayColumnChoices" styleClass="commandlinkslim" 
+                                                            update="columnChoiceSelect,columnChoiceButton,columnChoicePanel,:form:popups" 
+                                                            actionListener="#{addQuestionView.processColumnChoicesToDisplay}">
+                                                    <span class="ui-icon ui-icon-display"></span>
+                                                    <span class="label">#{msgs['page.admin.addNewQuestion.confirmSelectedColumnChoiceButton']}</span>
+                                                </p:commandLink>
+                                            </div>
+                                        </p:outputPanel>
+                                    </p:outputPanel>
+                            </p:outputPanel>
+                        </p:outputPanel>
+                    
+                </div>
+                <br class="clearfloat"/>
+                </div>
+                <!--matrix column choices panel ends-->
+            </p:tab>
+        </p:tabView>
+        <br class="clearfloat"/>
+         <div class="commandlink_container">
+            <p:commandLink id="addNewQBtn" styleClass="commandlink" update="popups,:form:growl" actionListener="#{addQuestionView.processAddQuestionButton}">
+                <span class="ui-icon ui-icon-add"></span>
+                <span class="label">#{msgs['page.admin.addNewQuestion.addNewQuestionButton.txt']}</span>
+            </p:commandLink>
+            <p:commandLink id="previewQBtn" styleClass="commandlink" actionListener="#{previewQuestionRequest.previewQuestion}">
+                <span class="ui-icon2 ui-icon-preview"></span>
+                <span class="label">#{msgs['page.admin.addNewQuestion.previewQuestionButton.txt']}</span>
+            </p:commandLink>
+            <p:commandLink id="backQbtn" styleClass="commandlink" action="editQuestion">
+                <span class="ui-icon ui-icon-back"></span>
+                <span class="label">Back</span>
+            </p:commandLink>
+         </div>
+    <br class="clearfloat"/>
+    </div>
+</div>

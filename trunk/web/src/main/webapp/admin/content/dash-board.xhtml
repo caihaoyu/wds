@@ -1,0 +1,133 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:c="http://java.sun.com/jsp/jstl/core"
+       xmlns:p="http://primefaces.org/ui"
+       >
+    <div class="administration-maintitle-panel">
+        <p:breadCrumb>
+                <p:menuitem id="dashboardMenu" value="Dash Board" action="dashboard" />
+        </p:breadCrumb>
+    </div>
+    <div class="admin-page-title-panel">Welcome to WDS Administrator Panel</div>
+    <hr class="admin-page-title-panel-line" size="1"/>
+    <div class="admin-page-description-txt">
+        <p>The dashboard acts as the entry point of this application. System statistics and attributes are displayed below for your reference.</p>
+        <p>You can now start <h:commandLink id="editSurveyLink" value="editing survey project" action="editSurvey" /> or <h:commandLink id="addSurveyLink" value="create a new survey project" action="addSurvey" />. </p>
+        <p>Questions are maintained in <h:commandLink id="QBankLink" value="Question Bank" action="editQuestion" /> which allows you to easily <h:commandLink id="addQLink" value="create" action="addQuestion" />, <h:commandLink id="editQLink" value="edit" action="editQuestion" /> or <h:commandLink id="deleteQLink" value="delete" action="deleteQuestion" /> question. </p>
+    </div>
+    <div class="admin-subtitle-panel">
+        <div class="admin-subtitle">Statistics and Attributes:</div>
+    </div>
+    <br class="clearfloat"/>
+    <div class="dash-board-panels">
+        <p:panel header="System Statistic:" closable="false" collapsed="false" toggleable="true" toggleSpeed="0">
+        <!--statistics panel starts-->
+            <div class="statistics-and-attributes-content">
+                    <div><span>Statistics</span></div>
+                    <table border="0" cellspacing="2" cellpadding="2" width="100%">
+                        <tbody>
+                            <tr>
+                                <td class="dash-board-attribute-name">Number Of Surveys:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.wdsAttr.get(0)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">Question Bank:</td>
+                                <td class="dash-board-attribute-value">Total: #{dashboardView.wdsAttr.get(1)} In Use: #{dashboardView.wdsAttr.get(2)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <!--statistics panel ends-->   
+        </p:panel>
+    </div>
+    <div class="dash-board-panels">
+        <p:panel header="Application Attributes:" closable="false" collapsed="false" toggleable="true" toggleSpeed="0">
+            <!--Attributes panel starts-->
+            <div class="statistics-and-attributes-content">
+                    <div><span>Database</span></div>
+                    <table border="0" cellspacing="2" cellpadding="2" width="100%">
+                        <tbody>
+                            <tr>
+                                <td class="dash-board-attribute-name" valign="top">DB Connection url:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(0)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">Hibernate Dialect:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(1)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">JDBC Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(2)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">JDBC User:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(3)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">Hibernate Core Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(4)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">Hibernate Entity Manager Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(5)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">Hibernate Search Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(6)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name" >Hibernate Validator Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(7)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">JPA Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(8)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">Eh Cache Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(9)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <div class="statistics-and-attributes-content">
+                    <div><span>AOP, DI, MVC and Transaction etc</span></div>
+                    <table border="0" cellspacing="2" cellpadding="2" width="100%">
+                        <tbody>
+                            <tr>
+                                <td class="dash-board-attribute-name">Spring Core Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(10)}</td>
+                            </tr>
+                            <tr>
+                                <td class="dash-board-attribute-name">Spring Security Version:</td>
+                                <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(11)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <div class="statistics-and-attributes-content">
+                    <div><span>Web</span></div>
+                    <table border="0" cellspacing="2" cellpadding="2" width="100%">
+                        <tbody>
+                                <tr>
+                                    <td class="dash-board-attribute-name">Java Server Faces Version:</td>
+                                    <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(12)}</td>
+                                </tr>
+                                <tr>
+                                    <td class="dash-board-attribute-name">IceFaces Version:</td>
+                                    <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(13)}</td>
+                                </tr>
+                                <tr>
+                                    <td class="dash-board-attribute-name">PrimeFaces Version:</td>
+                                    <td class="dash-board-attribute-value">#{dashboardView.sysAttr.get(14)}</td>
+                                </tr>
+                        </tbody>
+                    </table>
+            </div>
+    <!--Attributes panel ends-->
+        </p:panel>
+    </div>
+    <br class="clearfloat"/>
+</div>

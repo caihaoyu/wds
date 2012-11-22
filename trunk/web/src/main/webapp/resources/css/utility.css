@@ -1,0 +1,316 @@
+/* General style class */
+span.in-red{
+    color: #990000;
+}
+/* all-in-one button */
+/* normal button width:35px */
+/*.commandlink {
+	position: relative;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	overflow: visible;  removes extra side padding in IE 
+}
+
+.commandlink::-moz-focus-inner {
+	border: none;   overrides extra padding in Firefox 
+}
+.commandlink span {
+	position: relative;
+	white-space: nowrap;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	 Safari and Google Chrome only - fix margins 
+.commandlink span {
+		margin-top: -1px;
+	}
+}
+a.commandlink {
+	padding: 10px 21px 11px 0;
+	margin-right:6px;
+	font-size:1em;
+        height:38px;
+	text-align: center;
+        background: transparent url('../images/button-bg.png') no-repeat right -181px;
+        text-decoration: none;
+}
+a.commandlink span {
+	padding: 10px 0 11px 21px;
+	height:38px;
+	background: transparent url('../images/button-bg.png') no-repeat left top;
+        font-size:14px;
+        font-family:Arial, Helvetica, sans-serif;
+        text-transform:uppercase;
+        color:#646464;
+}
+a.commandlink:hover {  the redundant class is used to apply the hover state with a script 
+	background-position: right -242px;
+}
+
+a.commandlink:hover span {
+	background-position: 0 -61px;
+        text-decoration: underline;
+        cursor: pointer;
+        cursor: hand;
+        color: #eae6d5;
+}
+a.commandlink:active, a.commandlinkActive {
+    background-position: right -303px;
+}
+a.commandlink:active span, a.commandlinkActive span {
+    background-position: 0 -122px;
+    color: #eae6d5;
+}*/
+.commandlink, .commandlinkslim { 
+    position: relative; 
+    text-decoration: none; 
+    font-size:1em; 
+    font-weight:bold; 
+    text-transform:uppercase; 
+    cursor: pointer; 
+    overflow: visible; /* removes extra side padding in IE */
+    display: inline-block;
+}
+.commandlink {
+    height: 40px; 
+    margin-right:10px; 
+    padding-right: 25px; 
+    background:url(../images/wds-button-test_02.png) no-repeat top right; 
+}
+.commandlinkslim { 
+    background:url(../images/wds-button-test-slim_02.png) no-repeat top right;
+    height: 20px; 
+    margin-right: 6px; 
+    padding-right: 11px; 
+}
+.commandlink::-moz-focus-inner, .commandlinkslim::-moz-focus-inner {border: none;  /* overrides extra padding in Firefox */}
+.commandlink .ui-icon, .commandlinkslim .ui-icon, 
+.commandlink .ui-icon2, .commandlinkslim .ui-icon2 {
+    opacity: 0.7;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    margin-left: 12px;
+    background-image: url(../images/ui-icons_454545_256x240.png);
+}
+.commandlinkslim .ui-icon, .commandlinkslim .ui-icon2 {margin-left: 8px;}
+.commandlinkslim .ui-icon2, .commandlink .ui-icon2 {
+    background-image: url(../images/ui-icons2_222222_150x20.png);
+}
+.commandlink:hover .ui-icon, .commandlinkslim:hover .ui-icon {
+    background-image: url(../images/ui-icons_888888_256x240.png);
+}
+.commandlinkslim:hover .ui-icon2, .commandlink:hover .ui-icon2 {background-image: url(../images/ui-icons2_888888_150x20.png);}
+.commandlink .label, .commandlinkslim .label { 
+    display:block;
+    font-family:Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    color:#646464; 
+}
+.commandlink .label {  
+        background:url(../images/wds-button-test_01.png) no-repeat; 
+        line-height: 40px; 
+        padding: 0px 0 0px 35px;  
+        font-size:14px;
+}
+.commandlinkslim .label {
+        text-transform: capitalize;
+        background:url(../images/wds-button-test-slim_01.png) no-repeat; 
+        line-height: 20px; 
+        padding: 0px 0 0px 30px; 
+        font-size:12px;
+}
+.commandlink:hover .label, .commandlinkslim:hover .label {  
+        text-decoration: underline;
+        cursor: pointer;
+        cursor: hand;
+        color: #eae6d5; 
+}
+.commandlink:hover .label {background-position: 0 -40px; }
+.commandlinkslim:hover .label {background-position: 0 -20px;}
+.commandlink:active .label { 
+    background-position: 0 -80px;  
+}
+.commandlinkslim:active .label {
+    background-position: 0 -40px;
+}
+.commandlink:hover { 
+    background-position: right -40px; 
+}
+.commandlinkslim:hover { 
+    background-position: right -20px; 
+}
+.commandlink:active { 
+    background-position: right -80px; 
+}
+.commandlinkslim:active { 
+    background-position: right -40px; 
+}
+/* slim button height:11px */
+/*.commandlinkslim {
+	position: relative;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	overflow: visible;  removes extra side padding in IE 
+}
+
+.commandlinkslim::-moz-focus-inner {
+	border: none;   overrides extra padding in Firefox 
+}
+.commandlinkslim span {
+	position: relative;
+	white-space: nowrap;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	 Safari and Google Chrome only - fix margins 
+	.commandlinkslim span {
+		margin-top: -1px;
+	}
+}
+a.commandlinkslim {
+	padding: 1px 10px 7px 0;
+	margin-right:6px;
+	font-size:1em;
+	text-align: center;
+        background: transparent url('../images/button-bg-slim.png') no-repeat right -130px;
+        text-decoration: none;
+}
+a.commandlinkslim span {
+	padding: 3px 0 8px 10px;
+	height:20px;
+	background: transparent url('../images/button-bg-slim.png') no-repeat left top;
+        color:#646464;
+        font-weight: bold;
+        font-size:11px;
+        font-family:Arial, Helvetica, sans-serif;
+        text-transform: capitalize;
+}
+a.commandlinkslim:hover {  the redundant class is used to apply the hover state with a script 
+	background-position: right -174px;
+}
+
+a.commandlinkslim:hover span {
+	background-position: 0 -44px;
+        text-decoration: underline;
+        cursor: pointer;
+        cursor: hand;
+        color: #eae6d5;
+}
+a.commandlinkslim:active, a.commandlinkActive {
+    background-position: right -218px;
+}
+a.commandlinkslim:active span, a.commandlinkActive span {
+    background-position: 0 -88px;
+    color: #eae6d5;
+}*/
+/* all-in-one button ends */
+
+/* ICE Indicator */
+.iceOutConStat {
+
+}
+.iceOutConStatActv {
+   /* Active div style */
+   height:18px;
+   background-color:#bfe7dd;
+   font-family:Verdana, Geneva, sans-serif;
+   font-size:14px;
+   color:#17bf9a;
+   padding:3px 8px 3px 8px;
+   text-align: center;
+   display: block;
+}
+
+.iceOutConStatCaution {
+    /* Caution div style */
+    margin-top: -24px;
+    height:18px;
+    background-color:#f9eba5;
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:14px;
+    color:#f28705;
+    padding:3px 8px 3px 8px;
+    display: block;
+}
+
+.iceOutConStatDisconnect {
+    /* Discounnected div style */
+    margin-top: -24px;
+    height:18px;
+    background-color:#fcc49e;
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:14px;
+    color:#990000;
+    padding:3px 8px 3px 8px;
+    display: block;
+    text-align: center;
+}
+
+.iceOutConStatInactv {
+    /* Inactive div style */
+    background-color: #f28705;
+}
+/* Erro panel */
+#error-panel-container{
+	margin:0 auto 0 auto;
+	width:315px;
+	min-height:100px;
+	padding-top:15px;
+}
+#error-panel-container ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.error-panel {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    display: block;
+    background-image:url(../images/error-icon-16size.png);
+    background-repeat:no-repeat;
+    background-position:10px 12px;
+    color: #990000;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    width: 682px;
+	margin-top:10px;
+    padding: 10px 10px 10px 40px;
+    text-align: left;
+    background-color:#fcc49e;
+    border: 2px solid #db5b06;
+}
+.success-panel {
+    display: block;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-image:url(../images/success-icon-16size.png);
+    background-repeat:no-repeat;
+    background-position:10px 12px;
+    color: #17bf9a;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    width: 682px;
+	margin-top:10px;
+    padding: 10px 10px 10px 40px;
+    text-align:left;
+    background-color:#bfe7dd;
+    border: 2px solid #17bf9a;
+}
+.warning-panel{
+    display: block;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-image:url(../images/warning-icon-16size.png);
+    background-repeat:no-repeat;
+    background-position:10px 12px;
+    color: #f28705;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    width: 682px;
+	margin-top:10px;
+    padding: 10px 10px 10px 40px;
+	text-align:left;
+    background-color:#f9eba5;
+    border: 2px solid #f28705;
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="html/preview-question.html" x="1650" y="450" zoom="true"/>
+        <Node id="admin/branching-and-logic.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="admin/content/preview-question.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="admin/content/dash-board.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="admin/dash-board.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="index.jsp" x="400" y="750" zoom="true"/>
+        <Node id="admin/*" x="1150" y="600" zoom="true"/>
+        <Node id="admin/preview-question.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="admin/content/newQuestionRule.xhtml" x="150" y="1650" zoom="true"/>
+        <Node id="html/admin-template.html" x="650" y="300" zoom="true"/>
+        <Node id="admin/content/branching-and-logic.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="admin/primeTest.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="admin/content/add-survey.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="admin/template/adminContentTemplate.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="html/paging-and-branching.html" x="400" y="600" zoom="true"/>
+        <Node id="resources/images/temp/Untitled-2.html" x="150" y="150" zoom="true"/>
+        <Node id="admin/content/add-question.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="admin/page-and-reorder.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="admin/content/primeTest.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="html/preview-survey.html" x="900" y="900" zoom="true"/>
+        <Node id="newxhtml.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="html/paging-and-reordering.html" x="1400" y="150" zoom="true"/>
+        <Node id="admin/admin-menu.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="admin/popup/edit-question-pop.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="test/primefaces.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="admin/content/page-and-reorder.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="admin/content/editQuestionRule.xhtml" x="900" y="1200" zoom="true"/>
+        <Node id="admin/edit-survey.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="admin/content/edit-survey.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="admin/content/test.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="admin/edit-question.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="admin/test.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="html/popup-edit-page.html" x="1150" y="750" zoom="true"/>
+        <Node id="html/edit-question-page-status.html" x="900" y="450" zoom="true"/>
+        <Node id="admin/add-survey.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="admin/add-question.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="admin/content/edit-question.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="admin/editQuestionRule.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="admin/content/universalPopup.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="admin/popup/add-question-pop.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="admin/newQuestionRule.xhtml" x="2900" y="150" zoom="true"/>
+        <Node id="admin/admin-footer.xhtml" x="650" y="450" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

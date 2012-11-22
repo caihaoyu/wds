@@ -1,0 +1,95 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">   
+    <!-- page&branching content start-->
+           <div id="paging-and-branching-content-panel">
+                   <div class="administration-maintitle-panel">
+                       <p:breadCrumb>
+                                <p:menuitem id="dashboardMenu" value="Dash Board" action="dashboard" />
+                                <p:menuitem id="editSurveyMenu" value="#{editSurveySession.selectedSurvey.surveytitle}" action="editSurvey" />
+                                <p:menuitem id="branchingMenu" value="Branching and Logic" action="branching" />
+                        </p:breadCrumb>
+                   </div>
+                   <div class="admin-page-title-panel">Branching and Logic</div>
+                   <hr class="admin-page-title-panel-line" size="1"/>
+                   <div class="admin-page-description-txt">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras est magna, pretium sit amet, rhoncus nec, tristique molestie, leo. Aenean tortor sem, luctus at, luctus vel, consequat et, lectus. Proin id velit.
+                   </div>
+                   <div class="admin-subtitle-panel">
+                        <div class="admin-subtitle">#{surveyManager.get(editSurveySession.selectedSurveyId).surveytitle}</div>
+                        <div class="admin-subtitle-btn">
+                            <p:commandLink id="editAnotherSurveyBtn" styleClass="commandlinkslim" action="editSurvey">
+                                <span class="ui-icon ui-icon-edit"></span>
+                                <span class="label">Edit another survey</span>
+                            </p:commandLink>
+                            <p:commandLink id="editPageAndPositionBtn" styleClass="commandlinkslim" action="paging" >
+                                <span class="ui-icon2 ui-icon-reorder"></span>
+                                <span class="label">Edit Paging and Position</span>
+                            </p:commandLink>
+                        </div>
+                   </div>
+                   <br class="clearfloat"/>
+            <!-- insert content here -->
+            <div class="branching-and-logic-content-panel">
+                <!--               以下这个span需要是红色提示，等同于add question页的note类                         -->
+                <p:outputPanel rendered="#{!(editSurveySession.pages.size() > 0)}">
+                    *This survey contains no page. Please define pages first.
+                </p:outputPanel>
+                <p:dataGrid id="pagesGrid" value="#{editSurveySession.pages}" binding="#{branchingView.pageGrid}" var="page" columns="1" rendered="#{editSurveySession.pages.size()>0}">
+                    <p:column>
+                    <p:panel header="#{page.pagetitle}">
+                        <span class="branching-and-logic-pageID">Page ID: #{page.pageid}</span>
+                        <div id="branchLogic-branchs-content-panel">
+                            <!--               以下这个span需要是红色提示，等同于add question页的note类                         -->
+                            <p:outputPanel rendered="#{!(page.pagebranches.size() > 0)}">
+                                *This page contains no branch. Please add branch to page first.
+                            </p:outputPanel>
+                            <p:dataGrid id="pageBranchGrid" value="#{page.pagebranches}" binding="#{branchingView.pageBranchGrid}" var="pageBranch" columns="1" rendered="#{page.pagebranches.size() > 0}">
+                            <p:column>
+                                    <div class="branchLogic-branch-content">
+                                        <div class="branchLogic-branch-name"><span>#{pageBranch.branchname}</span></div>
+                                        <span class="branching-and-logic-branchID">Page branch ID: #{pageBranch.branchid}</span>
+<!--               以下这个span需要是红色提示，等同于add question页的note类                         -->
+                                        <p:outputPanel rendered="#{!(pageBranch.items.size() > 0)}">
+                                            <div class="notes"><span class="in-red"> * </span>This branch contains no question. Please add question to branch first.</div>
+                                        </p:outputPanel>
+                                        <p:dataGrid id="branchItemGrid" value="#{pageBranch.items}" binding="#{branchingView.branchItemGrid}" var="item" columns="1" rendered="#{pageBranch.items.size() > 0}" >
+                                            <p:column>
+                                                <div class="branchLogic-question-content-panel">
+                                                    <div class="branchLogic-question-content">
+                                                        <div class="branchLogic-question-title-panel">
+                                                            <h:outputText styleClass="branchLogic-question" value="#{questionManager.get(item.questionid).questiontitle}">
+                                                                <f:converter converterId="stringLengthConverter"/>
+                                                                <f:attribute name="length" value="75" />
+                                                            </h:outputText>
+                                                            <p:commandLink id="newRuleBtn" styleClass="commandlinkslim branchLogic-pages-panel-buttons" 
+                                                                             action="#{branchingView.processNewRule}">
+                                                                <span class="ui-icon ui-icon-slim-add"></span>
+                                                                <span class="label">New Rule</span>
+                                                            </p:commandLink>
+                                                            <p:commandLink id="editRuleBtn" styleClass="commandlinkslim branchLogic-pages-panel-buttons" 
+                                                                             action="#{branchingView.processEditRule}" 
+                                                                             rendered="#{branchItemManager.get(item.branchitemid).rules.size() > 0}">
+                                                                <span class="ui-icon ui-icon-edit"></span>
+                                                                <span class="label">Edit Rules(#{branchItemManager.get(item.branchitemid).rules.size()})</span>
+                                                            </p:commandLink>
+                                                            <span class="branchLogic-question-type">#{questionManager.get(item.questionid).questionTypeByName}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </p:column>
+                                        </p:dataGrid>
+                                    </div>
+                            </p:column>
+                        </p:dataGrid>
+                        </div>
+                    </p:panel>
+                    </p:column>
+            </p:dataGrid>
+            </div>
+      	   </div>
+    <br class="clearfloat" />
+<!-- page&branching content end-->
+</div>

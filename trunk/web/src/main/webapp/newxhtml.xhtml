@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : welcomeICEfaces
+    Created on : Jun 18, 2011, 6:45:04 PM
+    Author     : sam
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Index</title>
+        
+    </h:head>
+    <h:body>
+        <h:form>
+        <span style="font-size: 26px;padding: 20px;">Test Page</span>
+    <p:dataTable id="questionListTable" 
+                     value="#{testbean.questionList}" 
+                      binding="#{testbean.questionListTable}"
+                      paginator="true" 
+                      rows="10" 
+                      rowKey="#{question.questionid}"
+                      rowsPerPageTemplate="5,10,15"
+                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                      var="question">
+             <p:column headerText="Question Title"> 
+                 #{question.questiontitle}
+             </p:column>
+             <p:column headerText="Question Type">
+                 #{question.questionTypeByName}
+             </p:column>
+     </p:dataTable>
+    <br />
+    <br />
+    <br />
+    <p:commandButton value="Do something" actionListener="#{testbean.doSomething}" />
+    <br />
+    <br />
+    <br />
+    </h:form>
+    </h:body>
+</html>
